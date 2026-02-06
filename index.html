@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advertise on Royal Deals | CPC &amp; Revenue Share for Online Sellers</title>
+    <meta name="description" content="Fund your account with $500, drive high-intent traffic with CPC, track real sales with Amazon Attribution, and grow into a revenue share partnership.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1a3c6e;
+            --primary-light: #2a5298;
+            --accent: #e8a838;
+            --accent-hover: #d4952e;
+            --dark: #0f1923;
+            --text: #2d3748;
+            --text-light: #64748b;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* ===== NAVIGATION ===== */
+        .nav {
+            background: rgba(255,255,255,0.95);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav .container { display: flex; align-items: center; justify-content: space-between; }
+
+        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+
+        .nav-logo-icon {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--white); font-weight: 800; font-size: 18px;
+        }
+
+        .nav-logo-text { font-size: 22px; font-weight: 700; color: var(--primary); }
+        .nav-logo-text span { color: var(--accent); }
+
+        .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-light); font-weight: 500; font-size: 15px; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--primary); }
+
+        .nav-links .btn-nav {
+            background: var(--accent); color: var(--white);
+            padding: 10px 24px; border-radius: 8px; font-weight: 600;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .nav-links .btn-nav:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: var(--text); margin: 5px 0; }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+            padding: 100px 0 80px;
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -50%; right: -20%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(232,168,56,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero::after {
+            content: ''; position: absolute; bottom: -30%; left: -10%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(42,82,152,0.3) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero .container {
+            position: relative; z-index: 1;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 60px; align-items: center;
+        }
+
+        .hero-content h1 { font-size: 46px; font-weight: 800; color: var(--white); line-height: 1.15; margin-bottom: 20px; }
+        .hero-content h1 .highlight { color: var(--accent); }
+        .hero-content > p { font-size: 19px; color: rgba(255,255,255,0.8); margin-bottom: 36px; line-height: 1.7; max-width: 520px; }
+
+        .hero-cta-group { display: flex; gap: 16px; align-items: center; }
+
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--accent); color: var(--white);
+            padding: 16px 36px; border-radius: 10px;
+            font-size: 17px; font-weight: 700; text-decoration: none;
+            transition: all 0.3s; border: none; cursor: pointer;
+        }
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(232,168,56,0.4); }
+
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: transparent; color: var(--white);
+            padding: 16px 36px; border-radius: 10px;
+            font-size: 17px; font-weight: 600; text-decoration: none;
+            border: 2px solid rgba(255,255,255,0.3); transition: all 0.3s;
+        }
+        .btn-secondary:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.1); }
+
+        /* Hero - Funded Account Card */
+        .hero-funded-card {
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 20px;
+            padding: 40px 36px;
+            text-align: center;
+        }
+
+        .funded-badge {
+            display: inline-block;
+            background: rgba(232,168,56,0.2);
+            color: var(--accent);
+            padding: 6px 18px; border-radius: 20px;
+            font-size: 13px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1.5px;
+            margin-bottom: 20px;
+        }
+
+        .funded-amount {
+            display: flex; align-items: baseline; justify-content: center; gap: 4px;
+            margin-bottom: 8px;
+        }
+        .funded-amount .currency { font-size: 32px; font-weight: 700; color: var(--accent); }
+        .funded-amount .value { font-size: 80px; font-weight: 800; color: var(--white); line-height: 1; }
+
+        .funded-subtitle { color: rgba(255,255,255,0.6); font-size: 16px; margin-bottom: 28px; font-weight: 500; }
+
+        .funded-perks { list-style: none; text-align: left; }
+        .funded-perks li {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 0;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.8); font-size: 15px;
+        }
+        .funded-perks li:first-child { border-top: none; }
+        .funded-perks li .perk-icon { color: var(--accent); font-size: 16px; min-width: 20px; }
+
+        /* ===== SECTION COMMONS ===== */
+        .section-header { text-align: center; max-width: 720px; margin: 0 auto 64px; }
+        .section-tag {
+            display: inline-block; background: rgba(26,60,110,0.08); color: var(--primary);
+            padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px;
+        }
+        .section-header h2 { font-size: 38px; font-weight: 800; color: var(--dark); margin-bottom: 16px; }
+        .section-header p { font-size: 18px; color: var(--text-light); line-height: 1.7; }
+
+        /* ===== YOUR JOURNEY (3-Phase Timeline) ===== */
+        .journey { padding: 100px 0; background: var(--white); }
+
+        .journey-timeline {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 0; position: relative;
+            max-width: 1000px; margin: 0 auto;
+        }
+
+        .journey-timeline::before {
+            content: '';
+            position: absolute; top: 48px; left: 16.66%; right: 16.66%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--primary), var(--success));
+            border-radius: 2px;
+            z-index: 0;
+        }
+
+        .journey-phase {
+            text-align: center; padding: 0 20px;
+            position: relative; z-index: 1;
+        }
+
+        .phase-icon {
+            width: 96px; height: 96px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 36px;
+            border: 4px solid var(--white);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .phase-1 .phase-icon { background: linear-gradient(135deg, #e8a838, #f0c060); }
+        .phase-2 .phase-icon { background: linear-gradient(135deg, var(--primary), var(--primary-light)); }
+        .phase-3 .phase-icon { background: linear-gradient(135deg, #10b981, #34d399); }
+
+        .phase-label {
+            display: inline-block;
+            padding: 4px 14px; border-radius: 20px;
+            font-size: 12px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .phase-1 .phase-label { background: rgba(232,168,56,0.12); color: #b8860b; }
+        .phase-2 .phase-label { background: rgba(26,60,110,0.08); color: var(--primary); }
+        .phase-3 .phase-label { background: rgba(16,185,129,0.1); color: #059669; }
+
+        .journey-phase h3 { font-size: 20px; font-weight: 700; color: var(--dark); margin-bottom: 12px; }
+        .journey-phase p { font-size: 15px; color: var(--text-light); line-height: 1.7; }
+
+        .phase-detail-list {
+            list-style: none;
+            text-align: left;
+            margin-top: 16px;
+            background: var(--bg);
+            border-radius: 10px;
+            padding: 16px 20px;
+        }
+
+        .phase-detail-list li {
+            display: flex; align-items: flex-start; gap: 8px;
+            padding: 6px 0; font-size: 14px; color: var(--text);
+        }
+
+        .phase-detail-list li .li-icon { color: var(--success); min-width: 16px; font-size: 13px; margin-top: 3px; }
+
+        /* ===== HOW IT WORKS ===== */
+        .how-it-works { padding: 100px 0; background: var(--bg); }
+
+        .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+
+        .step-card {
+            text-align: center; padding: 36px 24px;
+            border-radius: var(--radius); border: 1px solid var(--border);
+            background: var(--white); transition: all 0.3s; position: relative;
+        }
+        .step-card:hover { border-color: var(--primary); box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+
+        .step-number {
+            width: 52px; height: 52px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--white); font-size: 20px; font-weight: 800;
+            margin: 0 auto 20px;
+        }
+
+        .step-card h3 { font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+        .step-card p { font-size: 14px; color: var(--text-light); line-height: 1.7; }
+
+        /* ===== CPC + ATTRIBUTION SECTION ===== */
+        .cpc-model { padding: 100px 0; background: var(--white); }
+
+        .cpc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+
+        .cpc-visual {
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            border-radius: 20px; padding: 40px; position: relative; overflow: hidden;
+        }
+        .cpc-visual::before {
+            content: ''; position: absolute; top: -30%; right: -20%;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(232,168,56,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cpc-flow { position: relative; z-index: 1; }
+
+        .cpc-flow-step {
+            display: flex; align-items: center; gap: 14px;
+            padding: 16px 18px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px; margin-bottom: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .cpc-flow-step:last-child { margin-bottom: 0; }
+
+        .cpc-flow-icon {
+            width: 44px; height: 44px; min-width: 44px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+        }
+
+        .cpc-flow-step:nth-child(1) .cpc-flow-icon { background: rgba(232,168,56,0.2); }
+        .cpc-flow-step:nth-child(2) .cpc-flow-icon { background: rgba(16,185,129,0.2); }
+        .cpc-flow-step:nth-child(3) .cpc-flow-icon { background: rgba(99,102,241,0.2); }
+        .cpc-flow-step:nth-child(4) .cpc-flow-icon { background: rgba(244,63,94,0.2); }
+        .cpc-flow-step:nth-child(5) .cpc-flow-icon { background: rgba(168,85,247,0.2); }
+
+        .cpc-flow-text h4 { color: var(--white); font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+        .cpc-flow-text p { color: rgba(255,255,255,0.6); font-size: 12px; }
+
+        .cpc-flow-arrow { text-align: center; color: rgba(255,255,255,0.3); font-size: 18px; margin: -2px 0; }
+
+        .cpc-content h2 { font-size: 36px; font-weight: 800; color: var(--dark); margin-bottom: 20px; }
+        .cpc-content h2 .highlight { color: var(--primary); }
+        .cpc-content > p { font-size: 17px; color: var(--text-light); margin-bottom: 28px; line-height: 1.7; }
+
+        .cpc-benefits { list-style: none; }
+        .cpc-benefits li {
+            display: flex; align-items: flex-start; gap: 12px;
+            margin-bottom: 14px; font-size: 15px; color: var(--text);
+        }
+        .cpc-benefits li .check {
+            width: 22px; height: 22px; min-width: 22px;
+            background: rgba(16,185,129,0.1); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--success); font-size: 12px; margin-top: 2px;
+        }
+
+        /* ===== PRICING / FUNDED ACCOUNT ===== */
+        .pricing { padding: 100px 0; background: var(--bg); }
+
+        .pricing-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 900px; margin: 0 auto; }
+
+        .pricing-card {
+            background: var(--white); border: 2px solid var(--border);
+            border-radius: 20px; overflow: hidden; box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+        .pricing-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+        .pricing-card.featured { border-color: var(--accent); }
+
+        .pricing-card-header {
+            padding: 32px 32px 24px; text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pricing-card.featured .pricing-card-header {
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            border-bottom: none;
+        }
+
+        .pricing-card-header .card-tag {
+            display: inline-block; padding: 4px 14px; border-radius: 20px;
+            font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .pricing-card:not(.featured) .card-tag { background: rgba(26,60,110,0.08); color: var(--primary); }
+        .pricing-card.featured .card-tag { background: rgba(232,168,56,0.2); color: var(--accent); }
+
+        .pricing-card-header h3 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+        .pricing-card:not(.featured) .pricing-card-header h3 { color: var(--dark); }
+        .pricing-card.featured .pricing-card-header h3 { color: var(--white); }
+
+        .pricing-card-header .price-row { display: flex; align-items: baseline; justify-content: center; gap: 4px; margin-bottom: 6px; }
+        .price-row .currency { font-size: 24px; font-weight: 700; }
+        .price-row .amount { font-size: 56px; font-weight: 800; line-height: 1; }
+        .price-row .unit { font-size: 16px; font-weight: 500; }
+
+        .pricing-card:not(.featured) .price-row .currency { color: var(--accent); }
+        .pricing-card:not(.featured) .price-row .amount { color: var(--dark); }
+        .pricing-card:not(.featured) .price-row .unit { color: var(--text-light); }
+
+        .pricing-card.featured .price-row .currency { color: var(--accent); }
+        .pricing-card.featured .price-row .amount { color: var(--white); }
+        .pricing-card.featured .price-row .unit { color: rgba(255,255,255,0.6); }
+
+        .pricing-card-header .price-note { font-size: 14px; }
+        .pricing-card:not(.featured) .price-note { color: var(--text-light); }
+        .pricing-card.featured .price-note { color: rgba(255,255,255,0.6); }
+
+        .pricing-card-body { padding: 28px 32px 32px; }
+
+        .pricing-card-body ul { list-style: none; margin-bottom: 24px; }
+        .pricing-card-body ul li {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 0; border-bottom: 1px solid var(--border);
+            font-size: 15px; color: var(--text);
+        }
+        .pricing-card-body ul li:last-child { border-bottom: none; }
+        .pricing-card-body ul li .feat-icon { color: var(--success); font-size: 16px; min-width: 20px; }
+
+        .pricing-card-body .btn-primary { width: 100%; justify-content: center; font-size: 16px; padding: 14px 24px; }
+        .pricing-card-body .btn-outline {
+            display: block; width: 100%; text-align: center;
+            padding: 14px 24px; border: 2px solid var(--primary); color: var(--primary);
+            border-radius: 10px; font-size: 16px; font-weight: 700;
+            text-decoration: none; transition: all 0.3s;
+        }
+        .pricing-card-body .btn-outline:hover { background: var(--primary); color: var(--white); }
+
+        /* ===== REVSHARE SECTION ===== */
+        .revshare { padding: 100px 0; background: var(--white); }
+
+        .revshare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+
+        .revshare-content h2 { font-size: 36px; font-weight: 800; color: var(--dark); margin-bottom: 20px; }
+        .revshare-content h2 .highlight { color: var(--success); }
+        .revshare-content > p { font-size: 17px; color: var(--text-light); margin-bottom: 28px; line-height: 1.7; }
+
+        .revshare-benefits { list-style: none; }
+        .revshare-benefits li {
+            display: flex; align-items: flex-start; gap: 12px;
+            margin-bottom: 16px; font-size: 15px; color: var(--text);
+        }
+        .revshare-benefits li .check {
+            width: 22px; height: 22px; min-width: 22px;
+            background: rgba(16,185,129,0.1); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--success); font-size: 12px; margin-top: 2px;
+        }
+
+        .revshare-visual {
+            background: var(--bg);
+            border: 2px solid var(--border);
+            border-radius: 20px; padding: 40px;
+        }
+
+        .comparison-row {
+            display: grid; grid-template-columns: 1fr auto 1fr;
+            gap: 20px; align-items: center;
+        }
+
+        .comparison-box {
+            padding: 28px 24px;
+            border-radius: var(--radius);
+            text-align: center;
+        }
+
+        .comparison-box.cpc-box {
+            background: rgba(26,60,110,0.06);
+            border: 1px solid rgba(26,60,110,0.15);
+        }
+
+        .comparison-box.rev-box {
+            background: rgba(16,185,129,0.06);
+            border: 2px solid rgba(16,185,129,0.3);
+        }
+
+        .comparison-box h4 { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .cpc-box h4 { color: var(--primary); }
+        .rev-box h4 { color: #059669; }
+
+        .comparison-box .comp-value { font-size: 28px; font-weight: 800; margin-bottom: 4px; }
+        .cpc-box .comp-value { color: var(--primary); }
+        .rev-box .comp-value { color: #059669; }
+
+        .comparison-box .comp-desc { font-size: 13px; color: var(--text-light); }
+
+        .comparison-arrow { font-size: 28px; color: var(--accent); font-weight: 800; }
+
+        .comparison-summary {
+            margin-top: 24px;
+            padding: 20px;
+            background: var(--white);
+            border-radius: var(--radius);
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .comparison-summary p { font-size: 15px; color: var(--text); line-height: 1.7; }
+        .comparison-summary strong { color: var(--dark); }
+
+        /* ===== BENEFITS ===== */
+        .benefits { padding: 100px 0; background: var(--bg); }
+
+        .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+
+        .benefit-card {
+            background: var(--white); border-radius: var(--radius);
+            padding: 36px 28px; border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+        .benefit-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); border-color: transparent; }
+
+        .benefit-icon {
+            width: 52px; height: 52px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; margin-bottom: 20px;
+        }
+        .benefit-card:nth-child(1) .benefit-icon { background: rgba(232,168,56,0.12); }
+        .benefit-card:nth-child(2) .benefit-icon { background: rgba(16,185,129,0.12); }
+        .benefit-card:nth-child(3) .benefit-icon { background: rgba(99,102,241,0.12); }
+        .benefit-card:nth-child(4) .benefit-icon { background: rgba(244,63,94,0.12); }
+        .benefit-card:nth-child(5) .benefit-icon { background: rgba(14,165,233,0.12); }
+        .benefit-card:nth-child(6) .benefit-icon { background: rgba(168,85,247,0.12); }
+
+        .benefit-card h3 { font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+        .benefit-card p { font-size: 15px; color: var(--text-light); line-height: 1.7; }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials { padding: 100px 0; background: var(--white); }
+
+        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+
+        .testimonial-card {
+            background: var(--bg); border-radius: var(--radius);
+            padding: 32px; border: 1px solid var(--border);
+        }
+
+        .testimonial-stars { color: var(--accent); font-size: 18px; margin-bottom: 16px; letter-spacing: 2px; }
+
+        .testimonial-card blockquote {
+            font-size: 15px; color: var(--text); line-height: 1.7;
+            margin-bottom: 20px; font-style: italic;
+        }
+
+        .testimonial-author { display: flex; align-items: center; gap: 12px; }
+
+        .testimonial-avatar {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex; align-items: center; justify-content: center;
+            color: var(--white); font-weight: 700; font-size: 16px;
+        }
+
+        .testimonial-info strong { display: block; font-size: 15px; color: var(--dark); }
+        .testimonial-info span { font-size: 13px; color: var(--text-light); }
+
+        /* ===== FAQ ===== */
+        .faq { padding: 100px 0; background: var(--bg); }
+
+        .faq-list { max-width: 760px; margin: 0 auto; }
+
+        .faq-item {
+            border: 1px solid var(--border); border-radius: var(--radius);
+            margin-bottom: 12px; overflow: hidden; transition: box-shadow 0.3s;
+            background: var(--white);
+        }
+        .faq-item:hover { box-shadow: var(--shadow); }
+
+        .faq-question {
+            width: 100%; background: var(--white); border: none;
+            padding: 20px 24px; display: flex; align-items: center;
+            justify-content: space-between; cursor: pointer;
+            font-size: 16px; font-weight: 600; color: var(--dark);
+            text-align: left; font-family: inherit; transition: background 0.2s;
+        }
+        .faq-question:hover { background: var(--bg); }
+
+        .faq-question .faq-toggle {
+            width: 28px; height: 28px; min-width: 28px; border-radius: 50%;
+            background: var(--bg);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; color: var(--primary);
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .faq-item.active .faq-toggle { transform: rotate(45deg); background: var(--primary); color: var(--white); }
+
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .faq-answer-inner { padding: 0 24px 20px; font-size: 15px; color: var(--text-light); line-height: 1.7; }
+        .faq-item.active .faq-answer { max-height: 400px; }
+
+        /* ===== CTA ===== */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+            position: relative; overflow: hidden;
+        }
+        .cta-section::before {
+            content: ''; position: absolute; top: -40%; left: 50%; transform: translateX(-50%);
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(232,168,56,0.1) 0%, transparent 60%);
+            border-radius: 50%;
+        }
+
+        .cta-content { text-align: center; position: relative; z-index: 1; max-width: 650px; margin: 0 auto; }
+        .cta-content h2 { font-size: 42px; font-weight: 800; color: var(--white); margin-bottom: 20px; }
+        .cta-content p { font-size: 19px; color: rgba(255,255,255,0.75); margin-bottom: 40px; line-height: 1.7; }
+        .cta-content .btn-primary { font-size: 18px; padding: 18px 48px; }
+
+        .cta-trust { margin-top: 32px; display: flex; align-items: center; justify-content: center; gap: 32px; }
+        .cta-trust-item { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 14px; font-weight: 500; }
+
+        /* ===== FOOTER ===== */
+        .footer { background: var(--dark); padding: 60px 0 32px; }
+
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+
+        .footer-brand .nav-logo { margin-bottom: 16px; }
+        .footer-brand .nav-logo-text { color: var(--white); }
+        .footer-brand p { color: rgba(255,255,255,0.5); font-size: 14px; line-height: 1.7; max-width: 280px; }
+
+        .footer-col h4 { color: var(--white); font-size: 15px; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .footer-col ul li a:hover { color: var(--accent); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1); padding-top: 32px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .footer-bottom p { color: rgba(255,255,255,0.4); font-size: 13px; }
+        .footer-bottom-links { display: flex; gap: 24px; }
+        .footer-bottom-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+        .footer-bottom-links a:hover { color: rgba(255,255,255,0.7); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero .container { grid-template-columns: 1fr; text-align: center; }
+            .hero-content > p { max-width: 100%; }
+            .hero-cta-group { justify-content: center; }
+            .hero-funded-card { max-width: 440px; margin: 0 auto; }
+            .cpc-grid, .revshare-grid { grid-template-columns: 1fr; }
+            .steps-grid { grid-template-columns: repeat(2, 1fr); }
+            .journey-timeline { grid-template-columns: 1fr; gap: 32px; }
+            .journey-timeline::before { display: none; }
+            .benefits-grid, .testimonials-grid { grid-template-columns: 1fr 1fr; }
+            .pricing-cards { grid-template-columns: 1fr; max-width: 480px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 34px; }
+            .section-header h2 { font-size: 28px; }
+            .steps-grid, .benefits-grid, .testimonials-grid { grid-template-columns: 1fr; }
+            .hero-cta-group { flex-direction: column; }
+            .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+            .cta-content h2 { font-size: 30px; }
+            .cta-trust { flex-direction: column; gap: 12px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .funded-amount .value { font-size: 60px; }
+            .comparison-row { grid-template-columns: 1fr; gap: 12px; }
+            .comparison-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="nav">
+        <div class="container">
+            <a href="#" class="nav-logo">
+                <div class="nav-logo-icon">R</div>
+                <div class="nav-logo-text">Royal<span>Deals</span></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#journey">Your Journey</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#get-started" class="btn-nav">Fund Your Account</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Start with <span class="highlight">$500</span>. See Real Sales. Then Let's Grow Together.</h1>
+                <p>Fund your account, drive high-intent traffic with our CPC model, track every sale through Amazon Attribution, and graduate to a revenue share partnership when the results speak for themselves.</p>
+                <div class="hero-cta-group">
+                    <a href="#get-started" class="btn-primary">Fund Your Account &#8594;</a>
+                    <a href="#journey" class="btn-secondary">See the Journey</a>
+                </div>
+            </div>
+            <div class="hero-funded-card">
+                <div class="funded-badge">Get Started</div>
+                <div class="funded-amount">
+                    <span class="currency">$</span>
+                    <span class="value">500</span>
+                </div>
+                <p class="funded-subtitle">Pre-funded account balance</p>
+                <ul class="funded-perks">
+                    <li><span class="perk-icon">&#10003;</span> Pay-per-click from your balance</li>
+                    <li><span class="perk-icon">&#10003;</span> Amazon Attribution tracking included</li>
+                    <li><span class="perk-icon">&#10003;</span> Dedicated Account Manager</li>
+                    <li><span class="perk-icon">&#10003;</span> Evolve to RevShare when ready</li>
+                    <li><span class="perk-icon">&#10003;</span> Real-time analytics dashboard</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- YOUR JOURNEY: 3 PHASES -->
+    <section class="journey" id="journey">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Your Journey</div>
+                <h2>From First Click to Long-Term Partnership</h2>
+                <p>We don't just send you traffic and disappear. Royal Deals is built around a model that proves its value at every stage &mdash; so you can scale with confidence.</p>
+            </div>
+            <div class="journey-timeline">
+                <!-- Phase 1: CPC -->
+                <div class="journey-phase phase-1">
+                    <div class="phase-icon">&#128176;</div>
+                    <div class="phase-label">Phase 1</div>
+                    <h3>CPC Traffic</h3>
+                    <p>Fund your account with $500 and start receiving high-intent traffic immediately. Pay only when shoppers click through to your store.</p>
+                    <ul class="phase-detail-list">
+                        <li><span class="li-icon">&#10003;</span> Fixed cost-per-click from your balance</li>
+                        <li><span class="li-icon">&#10003;</span> Budget controls and daily caps</li>
+                        <li><span class="li-icon">&#10003;</span> Real-time click analytics</li>
+                    </ul>
+                </div>
+
+                <!-- Phase 2: Attribution -->
+                <div class="journey-phase phase-2">
+                    <div class="phase-icon">&#128202;</div>
+                    <div class="phase-label">Phase 2</div>
+                    <h3>Track Real Sales</h3>
+                    <p>Connect your Amazon Seller Dashboard or Creator Connections. Our attribution model tracks every sale we drive &mdash; so you see the full picture.</p>
+                    <ul class="phase-detail-list">
+                        <li><span class="li-icon">&#10003;</span> Amazon Attribution integration</li>
+                        <li><span class="li-icon">&#10003;</span> Seller Dashboard connection</li>
+                        <li><span class="li-icon">&#10003;</span> Verified conversion tracking</li>
+                    </ul>
+                </div>
+
+                <!-- Phase 3: RevShare -->
+                <div class="journey-phase phase-3">
+                    <div class="phase-icon">&#129309;</div>
+                    <div class="phase-label">Phase 3</div>
+                    <h3>Revenue Share</h3>
+                    <p>Once we've proven the value, transition to a revenue share model. You only pay a percentage of actual sales we generate. True performance partnership.</p>
+                    <ul class="phase-detail-list">
+                        <li><span class="li-icon">&#10003;</span> Pay only on confirmed sales</li>
+                        <li><span class="li-icon">&#10003;</span> Aligned incentives for growth</li>
+                        <li><span class="li-icon">&#10003;</span> Scale without upfront risk</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">How It Works</div>
+                <h2>Go Live in 4 Simple Steps</h2>
+                <p>From signup to live traffic in as little as 48 hours.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Create Your Account</h3>
+                    <p>Sign up and get a dedicated Account Manager to guide you through everything.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Fund with $500</h3>
+                    <p>Deposit $500 into your account. Clicks are deducted from this balance &mdash; no surprises.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Submit Your Products</h3>
+                    <p>Share your product feed or Amazon ASINs. We optimise your listings across our network.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Start Getting Sales</h3>
+                    <p>High-intent shoppers click through to your store. Track every click and sale in real time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CPC + ATTRIBUTION DETAIL -->
+    <section class="cpc-model" id="cpc-model">
+        <div class="container">
+            <div class="cpc-grid">
+                <div class="cpc-visual">
+                    <div class="cpc-flow">
+                        <div class="cpc-flow-step">
+                            <div class="cpc-flow-icon">&#128176;</div>
+                            <div class="cpc-flow-text">
+                                <h4>You Fund $500</h4>
+                                <p>Pre-loaded balance for CPC clicks</p>
+                            </div>
+                        </div>
+                        <div class="cpc-flow-arrow">&#8595;</div>
+                        <div class="cpc-flow-step">
+                            <div class="cpc-flow-icon">&#128269;</div>
+                            <div class="cpc-flow-text">
+                                <h4>Shoppers Find Your Products</h4>
+                                <p>Across our network of comparison sites</p>
+                            </div>
+                        </div>
+                        <div class="cpc-flow-arrow">&#8595;</div>
+                        <div class="cpc-flow-step">
+                            <div class="cpc-flow-icon">&#128073;</div>
+                            <div class="cpc-flow-text">
+                                <h4>Click &amp; Buy on Amazon</h4>
+                                <p>CPC deducted from your balance per click</p>
+                            </div>
+                        </div>
+                        <div class="cpc-flow-arrow">&#8595;</div>
+                        <div class="cpc-flow-step">
+                            <div class="cpc-flow-icon">&#128202;</div>
+                            <div class="cpc-flow-text">
+                                <h4>We Track the Sale</h4>
+                                <p>Amazon Attribution confirms every conversion</p>
+                            </div>
+                        </div>
+                        <div class="cpc-flow-arrow">&#8595;</div>
+                        <div class="cpc-flow-step">
+                            <div class="cpc-flow-icon">&#129309;</div>
+                            <div class="cpc-flow-text">
+                                <h4>Graduate to RevShare</h4>
+                                <p>Proven ROI unlocks performance partnership</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cpc-content">
+                    <h2>Prove It First, <span class="highlight">Then Scale</span></h2>
+                    <p>Most ad platforms ask you to spend blindly. We take a different approach: start with CPC so you can see the traffic, connect Amazon Attribution to verify the sales, then move to revenue share when you're confident in the results.</p>
+                    <ul class="cpc-benefits">
+                        <li><span class="check">&#10003;</span> $500 pre-funded balance &mdash; no ongoing fees</li>
+                        <li><span class="check">&#10003;</span> Fixed CPC rates, transparent and predictable</li>
+                        <li><span class="check">&#10003;</span> Amazon Attribution verifies real purchase conversions</li>
+                        <li><span class="check">&#10003;</span> Connect your Seller Dashboard for full visibility</li>
+                        <li><span class="check">&#10003;</span> Creator Connections integration for influencer-driven sales</li>
+                        <li><span class="check">&#10003;</span> Transition to RevShare when you see the ROI</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Pricing</div>
+                <h2>Two Models. One Goal: Your Growth.</h2>
+                <p>Start with CPC to prove the value. Graduate to revenue share for unlimited scale.</p>
+            </div>
+            <div class="pricing-cards">
+                <!-- CPC Card -->
+                <div class="pricing-card featured">
+                    <div class="pricing-card-header">
+                        <div class="card-tag">Start Here</div>
+                        <h3>CPC Model</h3>
+                        <div class="price-row">
+                            <span class="currency">$</span>
+                            <span class="amount">500</span>
+                        </div>
+                        <p class="price-note">One-time account funding</p>
+                    </div>
+                    <div class="pricing-card-body">
+                        <ul>
+                            <li><span class="feat-icon">&#10003;</span> CPC clicks deducted from balance</li>
+                            <li><span class="feat-icon">&#10003;</span> Fixed rates per product category</li>
+                            <li><span class="feat-icon">&#10003;</span> Amazon Attribution tracking setup</li>
+                            <li><span class="feat-icon">&#10003;</span> Dedicated Account Manager</li>
+                            <li><span class="feat-icon">&#10003;</span> Real-time analytics dashboard</li>
+                            <li><span class="feat-icon">&#10003;</span> Top-up anytime, no lock-in</li>
+                        </ul>
+                        <a href="#get-started" class="btn-primary">Fund Your Account &#8594;</a>
+                    </div>
+                </div>
+
+                <!-- RevShare Card -->
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
+                        <div class="card-tag">Scale Up</div>
+                        <h3>Revenue Share</h3>
+                        <div class="price-row">
+                            <span class="currency">%</span>
+                            <span class="amount" style="font-size:48px;">Rev</span>
+                        </div>
+                        <p class="price-note">Pay only on confirmed sales</p>
+                    </div>
+                    <div class="pricing-card-body">
+                        <ul>
+                            <li><span class="feat-icon">&#10003;</span> No upfront cost per click</li>
+                            <li><span class="feat-icon">&#10003;</span> Percentage of attributed sales only</li>
+                            <li><span class="feat-icon">&#10003;</span> Amazon Attribution verified</li>
+                            <li><span class="feat-icon">&#10003;</span> Seller Dashboard integration</li>
+                            <li><span class="feat-icon">&#10003;</span> Creator Connections support</li>
+                            <li><span class="feat-icon">&#10003;</span> Unlimited scale potential</li>
+                        </ul>
+                        <a href="#get-started" class="btn-outline">Talk to Our Team &#8594;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVSHARE DEEP DIVE -->
+    <section class="revshare">
+        <div class="container">
+            <div class="revshare-grid">
+                <div class="revshare-content">
+                    <h2>Why Revenue Share is a <span class="highlight">Win-Win</span></h2>
+                    <p>Once we've proven the traffic converts through Amazon Attribution, transitioning to RevShare means we only get paid when you make money. Our incentives are fully aligned with yours.</p>
+                    <ul class="revshare-benefits">
+                        <li><span class="check">&#10003;</span> <strong>Zero upfront cost</strong> &mdash; no CPC charges, no funding required</li>
+                        <li><span class="check">&#10003;</span> <strong>Amazon Attribution verified</strong> &mdash; every sale is tracked and transparent</li>
+                        <li><span class="check">&#10003;</span> <strong>Seller Dashboard connected</strong> &mdash; full visibility into performance</li>
+                        <li><span class="check">&#10003;</span> <strong>Creator Connections</strong> &mdash; tap into our network of content creators and reviewers</li>
+                        <li><span class="check">&#10003;</span> <strong>We invest in your success</strong> &mdash; more sales for you = more revenue for us</li>
+                        <li><span class="check">&#10003;</span> <strong>Scale without limits</strong> &mdash; no budget caps, no daily spend limits</li>
+                    </ul>
+                </div>
+                <div class="revshare-visual">
+                    <div class="comparison-row">
+                        <div class="comparison-box cpc-box">
+                            <h4>Phase 1: CPC</h4>
+                            <div class="comp-value">$500</div>
+                            <div class="comp-desc">Pre-funded balance<br>Pay per click</div>
+                        </div>
+                        <div class="comparison-arrow">&#8594;</div>
+                        <div class="comparison-box rev-box">
+                            <h4>Phase 2: RevShare</h4>
+                            <div class="comp-value">% Rev</div>
+                            <div class="comp-desc">Pay per sale<br>Verified by Amazon</div>
+                        </div>
+                    </div>
+                    <div class="comparison-summary">
+                        <p><strong>The transition is simple:</strong> Once Amazon Attribution data confirms our traffic converts, your Account Manager will propose a RevShare rate tailored to your category and volume.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Why Royal Deals</div>
+                <h2>Built for Amazon Sellers Who Want Proof</h2>
+                <p>We're not just another traffic source. We're a performance partner with the data to back it up.</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">&#127919;</div>
+                    <h3>High-Intent Shoppers</h3>
+                    <p>Our visitors are actively comparing products and prices. They're further down the funnel and more likely to convert than social or display traffic.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">&#128202;</div>
+                    <h3>Amazon Attribution</h3>
+                    <p>We integrate with Amazon's own attribution system to track exactly which clicks turn into purchases. No guesswork &mdash; verified data.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">&#129309;</div>
+                    <h3>Seller Dashboard Access</h3>
+                    <p>Connect your Amazon Seller Central or Brand Analytics. See how our traffic performs alongside your other channels in one place.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">&#127908;</div>
+                    <h3>Creator Connections</h3>
+                    <p>Tap into our network of product reviewers and content creators who drive authentic, high-converting traffic through editorial content.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">&#128176;</div>
+                    <h3>Predictable Costs</h3>
+                    <p>Start with a fixed $500 balance. Know exactly what you're spending. No hidden fees, no auction bidding, no surprises on your invoice.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">&#128640;</div>
+                    <h3>Path to RevShare</h3>
+                    <p>Prove the ROI with CPC, then unlock revenue share. As you scale, your cost model becomes purely performance-based.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Partner Stories</div>
+                <h2>Sellers Who Started with $500</h2>
+                <p>Real results from sellers who funded their account and let the data decide.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <blockquote>"We funded $500, burned through it in 3 weeks, and the Amazon Attribution data showed a 4.2x ROAS. We immediately topped up and are now discussing RevShare terms."</blockquote>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">DM</div>
+                        <div class="testimonial-info">
+                            <strong>David Mitchell</strong>
+                            <span>Amazon Seller, HomeEssentials UK</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <blockquote>"The attribution tracking is what sold me. I could see in my Seller Dashboard exactly which sales came from Royal Deals. Moving to RevShare was a no-brainer."</blockquote>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">LC</div>
+                        <div class="testimonial-info">
+                            <strong>Lisa Chen</strong>
+                            <span>Brand Owner, FitLife Supplements</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <blockquote>"$500 to test a new channel with full attribution is the lowest-risk experiment I've run. The Creator Connections angle brought us reviews we couldn't buy elsewhere."</blockquote>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">RK</div>
+                        <div class="testimonial-info">
+                            <strong>Raj Kumar</strong>
+                            <span>Head of Growth, TechGadgets.co</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">FAQ</div>
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        What happens after I fund my account with $500?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Your $500 becomes your CPC balance. When shoppers click on your products through our network and are redirected to your Amazon listing, the click cost is deducted from this balance. You'll have a real-time dashboard showing every click, the remaining balance, and performance metrics. Your dedicated Account Manager will help optimise your listings from day one.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        How does the Amazon Attribution tracking work?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">We use Amazon's Attribution programme to generate tagged links for your products. When a shopper clicks through from Royal Deals and makes a purchase on Amazon, the sale is tracked and attributed to our traffic. This gives you verified, Amazon-confirmed conversion data &mdash; not estimates. You can also see this data in your own Seller Central dashboard.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        When can I transition from CPC to Revenue Share?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Once we have enough attribution data to demonstrate consistent conversion performance (typically after your initial $500 balance is spent), your Account Manager will review the results with you. If the data shows strong ROI, we'll propose a RevShare rate based on your product category and sales volume. The transition is entirely optional &mdash; you can continue with CPC if you prefer.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        What are Creator Connections?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Creator Connections is our network of product reviewers, comparison writers, and content creators who produce authentic editorial content featuring your products. This drives organic, high-converting traffic through trusted recommendations. When you connect your Seller Dashboard, you can see exactly how creator-driven traffic performs alongside our comparison site traffic.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Can I top up my balance or get a refund?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Yes, you can top up your CPC balance at any time in any amount. If you decide to stop, any unused balance can be refunded. There are no lock-in contracts. Many of our partners top up several times before transitioning to RevShare, while others move to RevShare after their first $500.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        How is Revenue Share calculated?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Revenue Share is calculated as a percentage of the confirmed sale value attributed to our traffic through Amazon Attribution. The exact percentage varies by product category and is agreed upon with your Account Manager. All sales are verified through Amazon's own reporting &mdash; you'll never pay commission on a sale we didn't drive. Typical RevShare rates range from 3-8% depending on category and volume.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Do I need to be an Amazon seller to use Royal Deals?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Our attribution and RevShare model is optimised for Amazon sellers (via Amazon Attribution and Seller Central integration). However, if you sell through your own website, we can still work with you on a CPC basis with standard conversion tracking. Contact our team to discuss your specific setup.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section" id="get-started">
+        <div class="container">
+            <div class="cta-content">
+                <h2>$500 to Prove We Drive Real Sales</h2>
+                <p>Fund your account, see the attribution data, and decide for yourself. No lock-in, no risk &mdash; just results.</p>
+                <a href="#" class="btn-primary" onclick="event.preventDefault(); document.getElementById('signup-modal').style.display='flex'">Fund Your Account &#8594;</a>
+                <div class="cta-trust">
+                    <div class="cta-trust-item"><span>&#10003;</span> $500 one-time funding</div>
+                    <div class="cta-trust-item"><span>&#10003;</span> Refundable unused balance</div>
+                    <div class="cta-trust-item"><span>&#10003;</span> No contracts</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIGNUP MODAL -->
+    <div id="signup-modal" style="display:none; position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,0.6); align-items:center; justify-content:center; backdrop-filter:blur(4px);">
+        <div style="background:var(--white); border-radius:20px; padding:48px; max-width:520px; width:90%; position:relative; box-shadow:0 25px 50px rgba(0,0,0,0.25);">
+            <button onclick="document.getElementById('signup-modal').style.display='none'" style="position:absolute; top:16px; right:20px; background:none; border:none; font-size:24px; cursor:pointer; color:var(--text-light);">&times;</button>
+            <h3 style="font-size:24px; font-weight:800; color:var(--dark); margin-bottom:8px;">Fund Your Account</h3>
+            <p style="color:var(--text-light); margin-bottom:28px; font-size:15px;">Tell us about your business and we'll get you set up within 24 hours.</p>
+            <form onsubmit="event.preventDefault(); this.innerHTML='<div style=\'text-align:center; padding:40px 0;\'><p style=\'font-size:48px; margin-bottom:16px;\'>&#10003;</p><h3 style=\'font-size:22px; color:#0f1923; margin-bottom:8px;\'>Application Received!</h3><p style=\'color:#64748b;\'>Your Account Manager will reach out within 24 hours to set up your $500 funded account.</p></div>'">
+                <div style="margin-bottom:16px;">
+                    <label style="display:block; font-size:14px; font-weight:600; color:var(--dark); margin-bottom:6px;">Full Name *</label>
+                    <input type="text" required placeholder="John Smith" style="width:100%; padding:12px 16px; border:1px solid var(--border); border-radius:8px; font-size:15px; font-family:inherit; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='#1a3c6e'" onblur="this.style.borderColor='#e2e8f0'">
+                </div>
+                <div style="margin-bottom:16px;">
+                    <label style="display:block; font-size:14px; font-weight:600; color:var(--dark); margin-bottom:6px;">Business Email *</label>
+                    <input type="email" required placeholder="john@yourbrand.com" style="width:100%; padding:12px 16px; border:1px solid var(--border); border-radius:8px; font-size:15px; font-family:inherit; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='#1a3c6e'" onblur="this.style.borderColor='#e2e8f0'">
+                </div>
+                <div style="margin-bottom:16px;">
+                    <label style="display:block; font-size:14px; font-weight:600; color:var(--dark); margin-bottom:6px;">Amazon Store Name or Brand *</label>
+                    <input type="text" required placeholder="Your Brand Name" style="width:100%; padding:12px 16px; border:1px solid var(--border); border-radius:8px; font-size:15px; font-family:inherit; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='#1a3c6e'" onblur="this.style.borderColor='#e2e8f0'">
+                </div>
+                <div style="margin-bottom:16px;">
+                    <label style="display:block; font-size:14px; font-weight:600; color:var(--dark); margin-bottom:6px;">Amazon Marketplace *</label>
+                    <select required style="width:100%; padding:12px 16px; border:1px solid var(--border); border-radius:8px; font-size:15px; font-family:inherit; outline:none; background:var(--white); transition:border-color 0.2s;" onfocus="this.style.borderColor='#1a3c6e'" onblur="this.style.borderColor='#e2e8f0'">
+                        <option value="">Select marketplace...</option>
+                        <option value="amazon.co.uk">Amazon.co.uk (UK)</option>
+                        <option value="amazon.com">Amazon.com (US)</option>
+                        <option value="amazon.de">Amazon.de (Germany)</option>
+                        <option value="amazon.fr">Amazon.fr (France)</option>
+                        <option value="amazon.es">Amazon.es (Spain)</option>
+                        <option value="amazon.it">Amazon.it (Italy)</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div style="margin-bottom:24px;">
+                    <label style="display:block; font-size:14px; font-weight:600; color:var(--dark); margin-bottom:6px;">Approximate Monthly Revenue (Optional)</label>
+                    <select style="width:100%; padding:12px 16px; border:1px solid var(--border); border-radius:8px; font-size:15px; font-family:inherit; outline:none; background:var(--white); transition:border-color 0.2s;" onfocus="this.style.borderColor='#1a3c6e'" onblur="this.style.borderColor='#e2e8f0'">
+                        <option value="">Prefer not to say</option>
+                        <option value="<10k">Under $10,000</option>
+                        <option value="10k-50k">$10,000 - $50,000</option>
+                        <option value="50k-100k">$50,000 - $100,000</option>
+                        <option value="100k-500k">$100,000 - $500,000</option>
+                        <option value="500k+">$500,000+</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%; justify-content:center; font-size:16px;">Submit &amp; Fund $500 &#8594;</button>
+                <p style="text-align:center; color:var(--text-light); font-size:12px; margin-top:12px;">Your Account Manager will contact you to finalise payment and setup.</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo">
+                        <div class="nav-logo-icon">R</div>
+                        <div class="nav-logo-text">Royal<span>Deals</span></div>
+                    </a>
+                    <p>The UK's trusted comparison network connecting high-intent shoppers with Amazon sellers through CPC and revenue share partnerships.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>For Sellers</h4>
+                    <ul>
+                        <li><a href="#journey">Your Journey</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#get-started">Fund Your Account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Help Centre</a></li>
+                        <li><a href="#">Attribution Guide</a></li>
+                        <li><a href="#">Seller Dashboard</a></li>
+                        <li><a href="#">Creator Programme</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Network</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Royal Deals Ltd. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            const wasActive = item.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+            if (!wasActive) item.classList.add('active');
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        document.getElementById('signup-modal').addEventListener('click', function(e) {
+            if (e.target === this) this.style.display = 'none';
+        });
+    </script>
+
+</body>
+</html>
