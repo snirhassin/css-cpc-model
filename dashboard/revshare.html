@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RevShare Path | RoyalDeals Seller Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared.css">
+    <style>
+        /* ================================================================
+           REVSHARE PATH - Scoped Styles
+           ================================================================ */
+
+        /* Journey Timeline */
+        .journey-timeline {
+            display: flex;
+            gap: 0;
+            position: relative;
+            margin-bottom: 48px;
+        }
+
+        .journey-phase {
+            flex: 1;
+            position: relative;
+            padding: 32px 28px 28px;
+            background: var(--white);
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            transition: all 0.3s;
+        }
+
+        .journey-phase.phase-complete {
+            border-color: var(--success);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.04) 0%, rgba(16, 185, 129, 0.01) 100%);
+        }
+
+        .journey-phase.phase-active {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(232, 168, 56, 0.15);
+            background: linear-gradient(135deg, rgba(232, 168, 56, 0.04) 0%, rgba(232, 168, 56, 0.01) 100%);
+        }
+
+        .journey-phase.phase-locked {
+            opacity: 0.55;
+        }
+
+        .journey-connector {
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            font-size: 24px;
+            color: var(--text-light);
+        }
+
+        .journey-connector.connector-done {
+            color: var(--success);
+        }
+
+        .phase-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .phase-badge--complete {
+            background: rgba(16, 185, 129, 0.12);
+            color: var(--success);
+        }
+
+        .phase-badge--active {
+            background: rgba(232, 168, 56, 0.15);
+            color: var(--accent-hover);
+        }
+
+        .phase-badge--locked {
+            background: rgba(100, 116, 139, 0.1);
+            color: var(--text-light);
+        }
+
+        .phase-number {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--border);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .phase-complete .phase-number {
+            color: rgba(16, 185, 129, 0.2);
+        }
+
+        .phase-active .phase-number {
+            color: rgba(232, 168, 56, 0.25);
+        }
+
+        .journey-phase h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .journey-phase p {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* Qualification Section */
+        .qualification-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        .qual-criteria-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+        }
+
+        .qual-criteria-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .qual-criteria-card .qual-subtitle {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 28px;
+        }
+
+        .qual-item {
+            margin-bottom: 24px;
+        }
+
+        .qual-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .qual-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .qual-item-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qual-item-label .qual-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .qual-icon--pass {
+            background: rgba(16, 185, 129, 0.12);
+            color: var(--success);
+        }
+
+        .qual-icon--progress {
+            background: rgba(245, 158, 11, 0.12);
+            color: var(--warning);
+        }
+
+        .qual-item-value {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .qual-item-value.pass {
+            color: var(--success);
+        }
+
+        .qual-progress-track {
+            height: 8px;
+            background: var(--bg);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .qual-progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.8s ease;
+        }
+
+        .qual-progress-fill.fill-success {
+            background: linear-gradient(90deg, var(--success), #34d399);
+        }
+
+        .qual-progress-fill.fill-warning {
+            background: linear-gradient(90deg, var(--warning), #fbbf24);
+        }
+
+        .qual-summary {
+            margin-top: 24px;
+            padding: 16px 20px;
+            background: rgba(16, 185, 129, 0.06);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .qual-summary-icon {
+            font-size: 24px;
+        }
+
+        .qual-summary-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .qual-summary-text span {
+            color: var(--success);
+        }
+
+        /* Proposal Card */
+        .proposal-card {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 60%, var(--primary-light) 100%);
+            border-radius: var(--radius);
+            padding: 36px;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .proposal-card::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -10%;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(232, 168, 56, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .proposal-card-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .proposal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 14px;
+            background: rgba(232, 168, 56, 0.2);
+            border: 1px solid rgba(232, 168, 56, 0.4);
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .proposal-card h2 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .proposal-card .proposal-desc {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 28px;
+            max-width: 500px;
+        }
+
+        .proposal-rate-row {
+            display: flex;
+            align-items: baseline;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .proposal-rate {
+            font-size: 52px;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .proposal-rate span {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .proposal-savings {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .proposal-savings strong {
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .proposal-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .proposal-actions .btn-accept {
+            padding: 14px 36px;
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .proposal-actions .btn-accept:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .proposal-actions .btn-outline-white {
+            padding: 14px 28px;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .proposal-actions .btn-outline-white:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+            color: var(--white);
+        }
+
+        /* Calculator */
+        .calculator-section {
+            margin-bottom: 48px;
+        }
+
+        .calculator-section h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .calculator-section .calc-subtitle {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 24px;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .calc-inputs {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+        }
+
+        .calc-field {
+            margin-bottom: 20px;
+        }
+
+        .calc-field:last-child {
+            margin-bottom: 0;
+        }
+
+        .calc-field label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .calc-field input[type="range"] {
+            width: 100%;
+            height: 6px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: var(--border);
+            border-radius: 3px;
+            outline: none;
+        }
+
+        .calc-field input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            border: 3px solid var(--white);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+        }
+
+        .calc-field-value {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 6px;
+        }
+
+        .calc-field-value .calc-current {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 14px;
+        }
+
+        .calc-results {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+        }
+
+        .calc-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .calc-model-card {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .calc-model-card.model-cpc {
+            background: rgba(100, 116, 139, 0.08);
+            border: 1px solid var(--border);
+        }
+
+        .calc-model-card.model-revshare {
+            background: rgba(16, 185, 129, 0.06);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .calc-model-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .model-cpc .calc-model-label {
+            color: var(--text-light);
+        }
+
+        .model-revshare .calc-model-label {
+            color: var(--success);
+        }
+
+        .calc-model-cost {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .model-cpc .calc-model-cost {
+            color: var(--text);
+        }
+
+        .model-revshare .calc-model-cost {
+            color: var(--success);
+        }
+
+        .calc-model-detail {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .calc-savings-banner {
+            padding: 16px 20px;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .calc-savings-banner .savings-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .calc-savings-banner .savings-amount {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--success);
+        }
+
+        .calc-savings-banner .savings-percent {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--success);
+        }
+
+        .calc-savings-banner.savings-negative {
+            background: rgba(239, 68, 68, 0.06);
+            border-color: rgba(239, 68, 68, 0.15);
+        }
+
+        .calc-savings-banner.savings-negative .savings-amount,
+        .calc-savings-banner.savings-negative .savings-percent {
+            color: var(--danger);
+        }
+
+        /* Benefits */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .benefit-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 16px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+        }
+
+        .benefit-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .benefit-card p {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .qualification-section {
+                grid-template-columns: 1fr;
+            }
+
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .journey-timeline {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .journey-connector {
+                display: none;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .calc-comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .proposal-rate-row {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .proposal-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================================================================
+         NAVIGATION
+         ================================================================ -->
+    <nav class="dash-nav">
+        <div class="container">
+            <a href="../index.html" class="dash-nav-logo">
+                <div class="dash-nav-logo-icon">R</div>
+                <div class="dash-nav-logo-text">Royal<span>Deals</span></div>
+            </a>
+
+            <ul class="dash-nav-tabs" id="navTabs">
+                <li><a href="dashboard.html">Overview</a></li>
+                <li><a href="bidding.html">Bidding &amp; Products</a></li>
+                <li><a href="analytics.html">Analytics</a></li>
+                <li><a href="budget.html">Budget</a></li>
+                <li><a href="revshare.html" class="active">RevShare Path</a></li>
+            </ul>
+
+            <div class="dash-nav-right">
+                <div class="dash-nav-balance">
+                    <span class="dash-nav-balance-label">Bal</span>
+                    <span id="navBalance">$287.43</span>
+                </div>
+                <div class="dash-nav-avatar" id="navAvatar">TG</div>
+            </div>
+
+            <button class="dash-nav-hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ================================================================
+         PAGE CONTENT
+         ================================================================ -->
+    <main class="container" style="padding-top: calc(var(--nav-height) + 32px); padding-bottom: 64px;">
+
+        <!-- Page Header -->
+        <div style="margin-bottom: 36px;">
+            <h1 style="font-size: 26px; font-weight: 800; color: var(--text); margin-bottom: 4px;">Your RevShare Journey</h1>
+            <p style="font-size: 14px; color: var(--text-light);">Track your progress from CPC to Revenue Share partnership</p>
+        </div>
+
+        <!-- ============================================================
+             3-PHASE JOURNEY TIMELINE
+             ============================================================ -->
+        <div class="journey-timeline">
+            <!-- Phase 1: CPC (Complete) -->
+            <div class="journey-phase phase-complete">
+                <div class="phase-badge phase-badge--complete">&#10003; Complete</div>
+                <div class="phase-number">01</div>
+                <h3>CPC Traffic</h3>
+                <p>Fund your account and start driving traffic with cost-per-click bidding. Set your own bids and control your spend.</p>
+            </div>
+
+            <div class="journey-connector connector-done">&#10140;</div>
+
+            <!-- Phase 2: Attribution (Active) -->
+            <div class="journey-phase phase-active">
+                <div class="phase-badge phase-badge--active">&#9679; In Progress</div>
+                <div class="phase-number">02</div>
+                <h3>Attribution Tracking</h3>
+                <p>Amazon Attribution verifies real sales from your traffic. Build your conversion track record and prove ROAS.</p>
+            </div>
+
+            <div class="journey-connector">&#10140;</div>
+
+            <!-- Phase 3: RevShare (Upcoming) -->
+            <div class="journey-phase phase-locked" id="phase3">
+                <div class="phase-badge phase-badge--locked">&#128274; Upcoming</div>
+                <div class="phase-number">03</div>
+                <h3>Revenue Share</h3>
+                <p>Graduate to a performance-based model. Pay a percentage of attributed sales instead of per-click fees.</p>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             QUALIFICATION + PROPOSAL
+             ============================================================ -->
+        <div class="qualification-section">
+            <!-- Qualification Criteria -->
+            <div class="qual-criteria-card">
+                <h2>Qualification Criteria</h2>
+                <p class="qual-subtitle">Meet these requirements to unlock Revenue Share</p>
+
+                <!-- Criterion 1: Total Spend -->
+                <div class="qual-item" id="qualSpend">
+                    <div class="qual-item-header">
+                        <div class="qual-item-label">
+                            <div class="qual-icon qual-icon--progress">&#163;</div>
+                            Total Spend
+                        </div>
+                        <div class="qual-item-value" id="qualSpendValue">$212.57 / $500</div>
+                    </div>
+                    <div class="qual-progress-track">
+                        <div class="qual-progress-fill fill-warning" id="qualSpendBar" style="width: 42.5%"></div>
+                    </div>
+                </div>
+
+                <!-- Criterion 2: Conversions -->
+                <div class="qual-item" id="qualConversions">
+                    <div class="qual-item-header">
+                        <div class="qual-item-label">
+                            <div class="qual-icon qual-icon--pass">&#10003;</div>
+                            Total Conversions
+                        </div>
+                        <div class="qual-item-value pass" id="qualConvValue">110 / 50</div>
+                    </div>
+                    <div class="qual-progress-track">
+                        <div class="qual-progress-fill fill-success" id="qualConvBar" style="width: 100%"></div>
+                    </div>
+                </div>
+
+                <!-- Criterion 3: ROAS -->
+                <div class="qual-item" id="qualRoas">
+                    <div class="qual-item-header">
+                        <div class="qual-item-label">
+                            <div class="qual-icon qual-icon--pass">&#10003;</div>
+                            Minimum ROAS
+                        </div>
+                        <div class="qual-item-value pass" id="qualRoasValue">8.2x / 2.0x</div>
+                    </div>
+                    <div class="qual-progress-track">
+                        <div class="qual-progress-fill fill-success" id="qualRoasBar" style="width: 100%"></div>
+                    </div>
+                </div>
+
+                <!-- Criterion 4: Account Age -->
+                <div class="qual-item" id="qualDays">
+                    <div class="qual-item-header">
+                        <div class="qual-item-label">
+                            <div class="qual-icon qual-icon--pass">&#10003;</div>
+                            Account Age
+                        </div>
+                        <div class="qual-item-value pass" id="qualDaysValue">47 / 30 days</div>
+                    </div>
+                    <div class="qual-progress-track">
+                        <div class="qual-progress-fill fill-success" id="qualDaysBar" style="width: 100%"></div>
+                    </div>
+                </div>
+
+                <!-- Summary -->
+                <div class="qual-summary" id="qualSummary">
+                    <div class="qual-summary-icon">&#9733;</div>
+                    <div class="qual-summary-text"><span>3 of 4 criteria met</span> &mdash; Complete your spend target to unlock RevShare</div>
+                </div>
+            </div>
+
+            <!-- RevShare Proposal Card -->
+            <div class="proposal-card" id="proposalCard">
+                <div class="proposal-card-inner">
+                    <div class="proposal-badge">&#9733; Early Access Available</div>
+                    <h2>Your RevShare Proposal</h2>
+                    <p class="proposal-desc">Based on your strong conversion performance (110 sales, 8.2x ROAS), you qualify for early RevShare access.</p>
+
+                    <div class="proposal-rate-row">
+                        <div class="proposal-rate" id="proposalRate">5.5<span>%</span></div>
+                        <div class="proposal-savings">
+                            Estimated monthly savings: <strong id="proposalSavings">$47.20</strong><br>
+                            Based on your current spend pattern
+                        </div>
+                    </div>
+
+                    <div class="proposal-actions">
+                        <button class="btn-accept" id="btnAcceptRevshare">Accept RevShare</button>
+                        <button class="btn-outline-white" id="btnCompare">Compare Models</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             CPC vs REVSHARE CALCULATOR
+             ============================================================ -->
+        <div class="calculator-section" id="calculatorSection">
+            <h2>CPC vs RevShare Calculator</h2>
+            <p class="calc-subtitle">Adjust the sliders to see which model works better for your business</p>
+
+            <div class="calculator-grid">
+                <!-- Inputs -->
+                <div class="calc-inputs">
+                    <div class="calc-field">
+                        <label>Monthly Clicks</label>
+                        <input type="range" id="calcClicks" min="100" max="10000" step="100" value="1668">
+                        <div class="calc-field-value">
+                            <span>100</span>
+                            <span class="calc-current" id="calcClicksVal">1,668</span>
+                            <span>10,000</span>
+                        </div>
+                    </div>
+
+                    <div class="calc-field">
+                        <label>Average CPC</label>
+                        <input type="range" id="calcCpc" min="0.05" max="1.00" step="0.01" value="0.22">
+                        <div class="calc-field-value">
+                            <span>$0.05</span>
+                            <span class="calc-current" id="calcCpcVal">$0.22</span>
+                            <span>$1.00</span>
+                        </div>
+                    </div>
+
+                    <div class="calc-field">
+                        <label>Conversion Rate</label>
+                        <input type="range" id="calcConvRate" min="1" max="20" step="0.5" value="6.6">
+                        <div class="calc-field-value">
+                            <span>1%</span>
+                            <span class="calc-current" id="calcConvRateVal">6.6%</span>
+                            <span>20%</span>
+                        </div>
+                    </div>
+
+                    <div class="calc-field">
+                        <label>Average Order Value</label>
+                        <input type="range" id="calcAov" min="10" max="200" step="5" value="40">
+                        <div class="calc-field-value">
+                            <span>$10</span>
+                            <span class="calc-current" id="calcAovVal">$40.00</span>
+                            <span>$200</span>
+                        </div>
+                    </div>
+
+                    <div class="calc-field">
+                        <label>RevShare Rate</label>
+                        <input type="range" id="calcRevRate" min="2" max="15" step="0.5" value="5.5">
+                        <div class="calc-field-value">
+                            <span>2%</span>
+                            <span class="calc-current" id="calcRevRateVal">5.5%</span>
+                            <span>15%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div class="calc-results">
+                    <div class="calc-comparison">
+                        <div class="calc-model-card model-cpc">
+                            <div class="calc-model-label">CPC Model</div>
+                            <div class="calc-model-cost" id="calcCpcCost">$366.96</div>
+                            <div class="calc-model-detail" id="calcCpcDetail">1,668 clicks x $0.22</div>
+                        </div>
+                        <div class="calc-model-card model-revshare">
+                            <div class="calc-model-label">RevShare Model</div>
+                            <div class="calc-model-cost" id="calcRevCost">$242.24</div>
+                            <div class="calc-model-detail" id="calcRevDetail">5.5% of $4,403.52 revenue</div>
+                        </div>
+                    </div>
+
+                    <div class="calc-savings-banner" id="calcSavingsBanner">
+                        <div class="savings-label">Your Monthly Savings with RevShare</div>
+                        <div class="savings-amount" id="calcSavingsAmount">$124.72</div>
+                        <div class="savings-percent" id="calcSavingsPercent">34.0% lower cost</div>
+                    </div>
+
+                    <div style="margin-top: 20px; padding: 16px; background: var(--bg); border-radius: 8px;">
+                        <div style="font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 8px;">Monthly Breakdown</div>
+                        <div style="display: flex; justify-content: space-between; font-size: 13px; color: var(--text-light); margin-bottom: 6px;">
+                            <span>Estimated Revenue</span>
+                            <span style="font-weight: 600; color: var(--text);" id="calcRevenue">$4,403.52</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 13px; color: var(--text-light); margin-bottom: 6px;">
+                            <span>Estimated Conversions</span>
+                            <span style="font-weight: 600; color: var(--text);" id="calcConversions">110</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 13px; color: var(--text-light);">
+                            <span>ROAS (Revenue / Cost)</span>
+                            <span style="font-weight: 600; color: var(--success);" id="calcRoas">12.0x</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             BENEFITS OF REVSHARE
+             ============================================================ -->
+        <div style="margin-bottom: 48px;">
+            <h2 style="font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 20px;">Why RevShare?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">&#128200;</div>
+                    <h3>Performance-Aligned</h3>
+                    <p>Pay only when real sales happen. Your costs scale with your revenue, not your traffic.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">&#128176;</div>
+                    <h3>Lower Effective Cost</h3>
+                    <p>Most sellers see 25-40% cost reduction compared to CPC, especially at scale.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">&#128640;</div>
+                    <h3>Unlimited Traffic</h3>
+                    <p>No daily budget caps. We invest in your success because we only earn when you do.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reset Demo -->
+        <div style="text-align: center; padding-top: 24px; border-top: 1px solid var(--border);">
+            <button class="btn-secondary" id="resetDemo" style="font-size: 13px; padding: 10px 24px; opacity: 0.6;">Reset Demo Data</button>
+        </div>
+
+    </main>
+
+    <!-- ================================================================
+         SCRIPTS
+         ================================================================ -->
+    <script src="mock-data.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        // ---------------------------------------------------------
+        // Helpers
+        // ---------------------------------------------------------
+        function fmtCurrency(n) {
+            return '$' + Number(n).toFixed(2);
+        }
+
+        function fmtNumber(n) {
+            return Number(n).toLocaleString('en-US');
+        }
+
+        // ---------------------------------------------------------
+        // Mobile nav toggle
+        // ---------------------------------------------------------
+        var hamburgerBtn = document.getElementById('hamburgerBtn');
+        var navTabs = document.getElementById('navTabs');
+        if (hamburgerBtn) {
+            hamburgerBtn.addEventListener('click', function () {
+                navTabs.classList.toggle('open');
+                hamburgerBtn.classList.toggle('active');
+            });
+        }
+
+        // ---------------------------------------------------------
+        // Load seller data (localStorage override or mock defaults)
+        // ---------------------------------------------------------
+        var seller = JSON.parse(localStorage.getItem('rd_seller')) || DEMO_SELLER;
+        var rsq = seller.revShareQualification;
+
+        // Nav balance
+        document.getElementById('navBalance').textContent = fmtCurrency(seller.currentBalance);
+
+        // ---------------------------------------------------------
+        // Qualification Progress Bars
+        // ---------------------------------------------------------
+        var criteria = [
+            {
+                key: 'spend',
+                current: rsq.currentSpend,
+                required: rsq.requiredSpend,
+                barId: 'qualSpendBar',
+                valueId: 'qualSpendValue',
+                iconParent: 'qualSpend',
+                format: function (c, r) { return fmtCurrency(c) + ' / ' + fmtCurrency(r); }
+            },
+            {
+                key: 'conversions',
+                current: rsq.currentConversions,
+                required: rsq.requiredConversions,
+                barId: 'qualConvBar',
+                valueId: 'qualConvValue',
+                iconParent: 'qualConversions',
+                format: function (c, r) { return fmtNumber(c) + ' / ' + fmtNumber(r); }
+            },
+            {
+                key: 'roas',
+                current: rsq.currentRoas,
+                required: rsq.requiredRoas,
+                barId: 'qualRoasBar',
+                valueId: 'qualRoasValue',
+                iconParent: 'qualRoas',
+                format: function (c, r) { return c.toFixed(1) + 'x / ' + r.toFixed(1) + 'x'; }
+            },
+            {
+                key: 'days',
+                current: rsq.currentDays,
+                required: rsq.requiredDays,
+                barId: 'qualDaysBar',
+                valueId: 'qualDaysValue',
+                iconParent: 'qualDays',
+                format: function (c, r) { return c + ' / ' + r + ' days'; }
+            }
+        ];
+
+        var metCount = 0;
+
+        criteria.forEach(function (crit) {
+            var pct = Math.min((crit.current / crit.required) * 100, 100);
+            var met = crit.current >= crit.required;
+
+            if (met) metCount++;
+
+            // Update bar
+            var bar = document.getElementById(crit.barId);
+            bar.style.width = pct + '%';
+            bar.className = 'qual-progress-fill ' + (met ? 'fill-success' : 'fill-warning');
+
+            // Update value text
+            var valueEl = document.getElementById(crit.valueId);
+            valueEl.textContent = crit.format(crit.current, crit.required);
+            valueEl.className = 'qual-item-value' + (met ? ' pass' : '');
+
+            // Update icon
+            var parentEl = document.getElementById(crit.iconParent);
+            var iconEl = parentEl.querySelector('.qual-icon');
+            if (met) {
+                iconEl.className = 'qual-icon qual-icon--pass';
+                iconEl.innerHTML = '&#10003;';
+            } else {
+                iconEl.className = 'qual-icon qual-icon--progress';
+                iconEl.innerHTML = '&#9679;';
+            }
+        });
+
+        // Summary
+        var summaryEl = document.getElementById('qualSummary');
+        if (metCount === 4) {
+            summaryEl.innerHTML = '<div class="qual-summary-icon">&#127942;</div>' +
+                '<div class="qual-summary-text"><span>All 4 criteria met!</span> &mdash; You are fully eligible for Revenue Share</div>';
+        } else {
+            summaryEl.querySelector('.qual-summary-text').innerHTML =
+                '<span>' + metCount + ' of 4 criteria met</span> &mdash; ' +
+                (metCount >= 3 ? 'Almost there! Complete remaining criteria to unlock RevShare' : 'Keep growing to qualify for RevShare');
+        }
+
+        // ---------------------------------------------------------
+        // Phase 3 unlock visual
+        // ---------------------------------------------------------
+        if (metCount === 4) {
+            var phase3 = document.getElementById('phase3');
+            phase3.className = 'journey-phase phase-active';
+            phase3.querySelector('.phase-badge').className = 'phase-badge phase-badge--active';
+            phase3.querySelector('.phase-badge').innerHTML = '&#9733; Unlocked';
+        }
+
+        // ---------------------------------------------------------
+        // Proposal card (only show if 3+ criteria met)
+        // ---------------------------------------------------------
+        var proposalCard = document.getElementById('proposalCard');
+        if (metCount < 3) {
+            proposalCard.style.display = 'none';
+        } else {
+            var rate = rsq.proposedRate || 5.5;
+            document.getElementById('proposalRate').innerHTML = rate + '<span>%</span>';
+
+            // Estimate monthly savings
+            var monthlySpend = seller.totalSpend / (seller.revShareQualification.currentDays / 30);
+            var monthlyRevenue = monthlySpend * rsq.currentRoas;
+            var revShareCost = monthlyRevenue * (rate / 100);
+            var savings = monthlySpend - revShareCost;
+            document.getElementById('proposalSavings').textContent = fmtCurrency(Math.abs(savings));
+        }
+
+        // Accept RevShare button
+        document.getElementById('btnAcceptRevshare').addEventListener('click', function () {
+            this.textContent = 'Application Submitted!';
+            this.style.background = 'var(--success)';
+            this.disabled = true;
+        });
+
+        // Compare button scrolls to calculator
+        document.getElementById('btnCompare').addEventListener('click', function () {
+            document.getElementById('calculatorSection').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // ---------------------------------------------------------
+        // Calculator
+        // ---------------------------------------------------------
+        var sliders = {
+            clicks: document.getElementById('calcClicks'),
+            cpc: document.getElementById('calcCpc'),
+            convRate: document.getElementById('calcConvRate'),
+            aov: document.getElementById('calcAov'),
+            revRate: document.getElementById('calcRevRate')
+        };
+
+        var displays = {
+            clicksVal: document.getElementById('calcClicksVal'),
+            cpcVal: document.getElementById('calcCpcVal'),
+            convRateVal: document.getElementById('calcConvRateVal'),
+            aovVal: document.getElementById('calcAovVal'),
+            revRateVal: document.getElementById('calcRevRateVal')
+        };
+
+        function updateCalculator() {
+            var clicks = parseInt(sliders.clicks.value);
+            var cpc = parseFloat(sliders.cpc.value);
+            var convRate = parseFloat(sliders.convRate.value) / 100;
+            var aov = parseFloat(sliders.aov.value);
+            var revRate = parseFloat(sliders.revRate.value) / 100;
+
+            // Display current values
+            displays.clicksVal.textContent = fmtNumber(clicks);
+            displays.cpcVal.textContent = fmtCurrency(cpc);
+            displays.convRateVal.textContent = (convRate * 100).toFixed(1) + '%';
+            displays.aovVal.textContent = fmtCurrency(aov);
+            displays.revRateVal.textContent = (revRate * 100).toFixed(1) + '%';
+
+            // Calculate
+            var cpcCost = clicks * cpc;
+            var conversions = Math.round(clicks * convRate);
+            var revenue = conversions * aov;
+            var revShareCost = revenue * revRate;
+            var savings = cpcCost - revShareCost;
+            var savingsPct = cpcCost > 0 ? (savings / cpcCost) * 100 : 0;
+            var roas = revShareCost > 0 ? revenue / revShareCost : 0;
+
+            // Update display
+            document.getElementById('calcCpcCost').textContent = fmtCurrency(cpcCost);
+            document.getElementById('calcCpcDetail').textContent = fmtNumber(clicks) + ' clicks x ' + fmtCurrency(cpc);
+
+            document.getElementById('calcRevCost').textContent = fmtCurrency(revShareCost);
+            document.getElementById('calcRevDetail').textContent = (revRate * 100).toFixed(1) + '% of ' + fmtCurrency(revenue) + ' revenue';
+
+            document.getElementById('calcRevenue').textContent = fmtCurrency(revenue);
+            document.getElementById('calcConversions').textContent = fmtNumber(conversions);
+            document.getElementById('calcRoas').textContent = roas.toFixed(1) + 'x';
+
+            // Savings banner
+            var banner = document.getElementById('calcSavingsBanner');
+            var amountEl = document.getElementById('calcSavingsAmount');
+            var pctEl = document.getElementById('calcSavingsPercent');
+
+            if (savings >= 0) {
+                banner.className = 'calc-savings-banner';
+                banner.querySelector('.savings-label').textContent = 'Your Monthly Savings with RevShare';
+                amountEl.textContent = fmtCurrency(savings);
+                pctEl.textContent = savingsPct.toFixed(1) + '% lower cost';
+            } else {
+                banner.className = 'calc-savings-banner savings-negative';
+                banner.querySelector('.savings-label').textContent = 'RevShare Costs More in This Scenario';
+                amountEl.textContent = '+' + fmtCurrency(Math.abs(savings));
+                pctEl.textContent = Math.abs(savingsPct).toFixed(1) + '% higher cost';
+            }
+        }
+
+        // Attach listeners
+        Object.keys(sliders).forEach(function (key) {
+            sliders[key].addEventListener('input', updateCalculator);
+        });
+
+        // Initial calculation
+        updateCalculator();
+
+        // ---------------------------------------------------------
+        // Reset Demo
+        // ---------------------------------------------------------
+        document.getElementById('resetDemo').addEventListener('click', function () {
+            localStorage.clear();
+            window.location.reload();
+        });
+
+    });
+    </script>
+
+</body>
+</html>

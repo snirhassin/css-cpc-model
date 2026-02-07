@@ -271,6 +271,156 @@
         .step-card h3 { font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
         .step-card p { font-size: 14px; color: var(--text-light); line-height: 1.7; }
 
+        /* ===== PLATFORM PREVIEW ===== */
+        .platform-preview { padding: 100px 0; background: var(--white); }
+
+        .browser-frame {
+            max-width: 1000px; margin: 0 auto;
+            border-radius: 12px; overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.05);
+        }
+
+        .browser-chrome {
+            background: #2d3748; padding: 12px 16px;
+            display: flex; align-items: center; gap: 12px;
+        }
+
+        .browser-dots { display: flex; gap: 6px; }
+        .browser-dots span { width: 12px; height: 12px; border-radius: 50%; }
+        .browser-dots span:nth-child(1) { background: #ff5f57; }
+        .browser-dots span:nth-child(2) { background: #febc2e; }
+        .browser-dots span:nth-child(3) { background: #28c840; }
+
+        .browser-url {
+            flex: 1; background: #1a202c; border-radius: 6px;
+            padding: 6px 14px; color: #a0aec0; font-size: 13px;
+            font-family: 'Inter', monospace;
+        }
+
+        .browser-body { background: var(--bg); padding: 20px; }
+
+        /* Mini dashboard inside browser frame */
+        .mini-dash-nav {
+            background: var(--white); border-radius: 8px;
+            padding: 10px 16px; margin-bottom: 16px;
+            display: flex; align-items: center; justify-content: space-between;
+            border: 1px solid var(--border);
+        }
+
+        .mini-dash-logo { display: flex; align-items: center; gap: 6px; }
+        .mini-dash-logo .mini-logo-icon {
+            width: 24px; height: 24px; border-radius: 6px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex; align-items: center; justify-content: center;
+            color: var(--white); font-weight: 800; font-size: 11px;
+        }
+        .mini-dash-logo span { font-size: 14px; font-weight: 700; color: var(--primary); }
+        .mini-dash-logo span em { color: var(--accent); font-style: normal; }
+
+        .mini-dash-tabs { display: flex; gap: 16px; list-style: none; }
+        .mini-dash-tabs li { font-size: 11px; color: var(--text-light); font-weight: 500; padding: 4px 0; }
+        .mini-dash-tabs li.active { color: var(--primary); border-bottom: 2px solid var(--accent); font-weight: 700; }
+
+        .mini-balance-pill {
+            background: var(--accent); color: var(--white);
+            padding: 4px 10px; border-radius: 12px;
+            font-size: 11px; font-weight: 700;
+        }
+
+        /* Mini KPI cards */
+        .mini-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+
+        .mini-kpi {
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: 8px; padding: 12px 14px;
+        }
+        .mini-kpi .mini-kpi-value { font-size: 20px; font-weight: 800; color: var(--dark); }
+        .mini-kpi .mini-kpi-label { font-size: 10px; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+        .mini-kpi .mini-kpi-trend { font-size: 10px; font-weight: 600; margin-top: 4px; }
+        .mini-kpi .mini-kpi-trend.up { color: var(--success); }
+        .mini-kpi .mini-kpi-trend.down { color: #ef4444; }
+        .mini-kpi.kpi-highlight { background: linear-gradient(135deg, var(--dark), var(--primary)); }
+        .mini-kpi.kpi-highlight .mini-kpi-value { color: var(--accent); }
+        .mini-kpi.kpi-highlight .mini-kpi-label { color: rgba(255,255,255,0.6); }
+        .mini-kpi.kpi-highlight .mini-kpi-trend { color: rgba(255,255,255,0.8); }
+
+        /* Mini product table */
+        .mini-table-wrap {
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: 8px; overflow: hidden;
+        }
+
+        .mini-table-header {
+            padding: 10px 14px; border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .mini-table-header h4 { font-size: 13px; font-weight: 700; color: var(--dark); }
+        .mini-table-header .mini-badge {
+            font-size: 10px; background: rgba(16,185,129,0.1); color: var(--success);
+            padding: 2px 8px; border-radius: 10px; font-weight: 600;
+        }
+
+        .mini-table { width: 100%; border-collapse: collapse; }
+        .mini-table thead th {
+            text-align: left; padding: 8px 14px;
+            font-size: 10px; font-weight: 600; color: var(--text-light);
+            text-transform: uppercase; letter-spacing: 0.5px;
+            background: var(--bg); border-bottom: 1px solid var(--border);
+        }
+        .mini-table tbody td {
+            padding: 10px 14px; font-size: 12px; color: var(--text);
+            border-bottom: 1px solid var(--border);
+        }
+        .mini-table tbody tr:last-child td { border-bottom: none; }
+        .mini-table tbody tr:hover { background: #f7fafc; }
+
+        .mini-table .product-name { font-weight: 600; color: var(--dark); max-width: 180px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .mini-table .asin-code { font-size: 10px; color: var(--text-light); font-family: monospace; }
+        .mini-table .bid-cell { font-weight: 700; color: var(--primary); }
+        .mini-table .position-badge {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 24px; height: 24px; border-radius: 6px;
+            font-size: 11px; font-weight: 800;
+        }
+        .pos-1 { background: rgba(232,168,56,0.15); color: #b8860b; }
+        .pos-2 { background: rgba(26,60,110,0.1); color: var(--primary); }
+        .pos-3 { background: rgba(100,116,139,0.1); color: var(--text-light); }
+        .mini-table .roas-cell { font-weight: 700; }
+        .roas-high { color: var(--success); }
+        .roas-mid { color: var(--accent); }
+        .mini-table .status-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            display: inline-block; margin-right: 4px;
+        }
+        .status-dot.active { background: var(--success); }
+        .status-dot.paused { background: #94a3b8; }
+
+        /* Annotation callouts */
+        .preview-annotations {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 24px; margin-top: 40px; max-width: 1000px; margin-left: auto; margin-right: auto;
+        }
+
+        .annotation {
+            text-align: center; padding: 0 12px;
+        }
+        .annotation .anno-icon {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(26,60,110,0.08);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 10px; font-size: 18px;
+        }
+        .annotation h4 { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+        .annotation p { font-size: 13px; color: var(--text-light); line-height: 1.6; }
+
+        @media (max-width: 768px) {
+            .mini-kpis { grid-template-columns: repeat(2, 1fr); }
+            .mini-dash-tabs { display: none; }
+            .preview-annotations { grid-template-columns: 1fr; gap: 16px; }
+            .mini-table { font-size: 11px; }
+            .mini-table thead th, .mini-table tbody td { padding: 6px 10px; }
+        }
+
         /* ===== CPC + ATTRIBUTION SECTION ===== */
         .cpc-model { padding: 100px 0; background: var(--white); }
 
@@ -776,6 +926,158 @@
                     <div class="step-number">4</div>
                     <h3>Start Getting Sales</h3>
                     <p>High-intent shoppers click through to your store. Track every click and sale in real time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLATFORM PREVIEW -->
+    <section class="platform-preview" id="platform">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">The Platform</div>
+                <h2>See Exactly Where Every Dollar Goes</h2>
+                <p>Your seller dashboard gives you full control over bids, budgets, and performance &mdash; with Amazon Attribution data baked in.</p>
+            </div>
+
+            <div class="browser-frame">
+                <div class="browser-chrome">
+                    <div class="browser-dots"><span></span><span></span><span></span></div>
+                    <div class="browser-url">royaldeals.co.uk/dashboard/bidding</div>
+                </div>
+                <div class="browser-body">
+                    <!-- Mini Nav -->
+                    <div class="mini-dash-nav">
+                        <div class="mini-dash-logo">
+                            <div class="mini-logo-icon">R</div>
+                            <span>Royal<em>Deals</em></span>
+                        </div>
+                        <ul class="mini-dash-tabs">
+                            <li>Overview</li>
+                            <li class="active">Bidding &amp; Products</li>
+                            <li>Analytics</li>
+                            <li>Budget</li>
+                            <li>RevShare</li>
+                        </ul>
+                        <div class="mini-balance-pill">$287.43</div>
+                    </div>
+
+                    <!-- Mini KPIs -->
+                    <div class="mini-kpis">
+                        <div class="mini-kpi kpi-highlight">
+                            <div class="mini-kpi-value">$287.43</div>
+                            <div class="mini-kpi-label">Account Balance</div>
+                            <div class="mini-kpi-trend">57% of $500 remaining</div>
+                        </div>
+                        <div class="mini-kpi">
+                            <div class="mini-kpi-value">1,668</div>
+                            <div class="mini-kpi-label">Total Clicks (30d)</div>
+                            <div class="mini-kpi-trend up">+12% vs prev. period</div>
+                        </div>
+                        <div class="mini-kpi">
+                            <div class="mini-kpi-value">110</div>
+                            <div class="mini-kpi-label">Conversions (30d)</div>
+                            <div class="mini-kpi-trend up">+8% vs prev. period</div>
+                        </div>
+                        <div class="mini-kpi">
+                            <div class="mini-kpi-value">8.2x</div>
+                            <div class="mini-kpi-label">ROAS</div>
+                            <div class="mini-kpi-trend up">Above 2.0x target</div>
+                        </div>
+                    </div>
+
+                    <!-- Mini Product Table -->
+                    <div class="mini-table-wrap">
+                        <div class="mini-table-header">
+                            <h4>Product Bid Management</h4>
+                            <span class="mini-badge">8 Active Products</span>
+                        </div>
+                        <table class="mini-table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Your Bid</th>
+                                    <th>Est. CPC</th>
+                                    <th>Position</th>
+                                    <th>Clicks</th>
+                                    <th>Conversions</th>
+                                    <th>ROAS</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><div class="product-name">Wireless Bluetooth Headphones Pro</div><div class="asin-code">B08N5WRWNW</div></td>
+                                    <td class="bid-cell">$0.45</td>
+                                    <td>$0.38</td>
+                                    <td><span class="position-badge pos-1">1</span></td>
+                                    <td>342</td>
+                                    <td>24</td>
+                                    <td class="roas-cell roas-high">5.5x</td>
+                                    <td><span class="status-dot active"></span>Active</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="product-name">Smart Fitness Watch Ultra</div><div class="asin-code">B07XJ8C8F5</div></td>
+                                    <td class="bid-cell">$0.55</td>
+                                    <td>$0.47</td>
+                                    <td><span class="position-badge pos-2">2</span></td>
+                                    <td>189</td>
+                                    <td>11</td>
+                                    <td class="roas-cell roas-high">11.1x</td>
+                                    <td><span class="status-dot active"></span>Active</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="product-name">Webcam 4K Ultra HD Streaming</div><div class="asin-code">B0BXMRPQWN</div></td>
+                                    <td class="bid-cell">$0.50</td>
+                                    <td>$0.41</td>
+                                    <td><span class="position-badge pos-1">1</span></td>
+                                    <td>284</td>
+                                    <td>19</td>
+                                    <td class="roas-cell roas-high">9.8x</td>
+                                    <td><span class="status-dot active"></span>Active</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="product-name">Gaming Mechanical Keyboard RGB</div><div class="asin-code">B09KMVJY8P</div></td>
+                                    <td class="bid-cell">$0.35</td>
+                                    <td>$0.31</td>
+                                    <td><span class="position-badge pos-3">3</span></td>
+                                    <td>156</td>
+                                    <td>9</td>
+                                    <td class="roas-cell roas-high">12.1x</td>
+                                    <td><span class="status-dot active"></span>Active</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="product-name">Portable Phone Charger 20000mAh</div><div class="asin-code">B07VJKQXW9</div></td>
+                                    <td class="bid-cell">$0.25</td>
+                                    <td>$0.22</td>
+                                    <td><span class="position-badge pos-3">4</span></td>
+                                    <td>87</td>
+                                    <td>4</td>
+                                    <td class="roas-cell roas-mid">5.2x</td>
+                                    <td><span class="status-dot paused"></span>Paused</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Annotations -->
+            <div class="preview-annotations">
+                <div class="annotation">
+                    <div class="anno-icon">&#128176;</div>
+                    <h4>Set Your Own Bids</h4>
+                    <p>Control your CPC bid per product. Higher bids win better placement on our comparison pages.</p>
+                </div>
+                <div class="annotation">
+                    <div class="anno-icon">&#128202;</div>
+                    <h4>Track Every Conversion</h4>
+                    <p>Amazon Attribution verifies real purchases. See clicks, conversions, and ROAS per product in real time.</p>
+                </div>
+                <div class="annotation">
+                    <div class="anno-icon">&#127919;</div>
+                    <h4>Win Top Positions</h4>
+                    <p>Your Ad Rank (bid x quality score) determines placement. Optimise both for the best results.</p>
                 </div>
             </div>
         </div>

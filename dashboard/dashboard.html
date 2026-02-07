@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview | RoyalDeals Seller Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared.css">
+    <style>
+        /* =============================================================
+           Dashboard Overview - Page-specific styles
+           ============================================================= */
+
+        /* Welcome Banner */
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 60%, var(--primary-light) 100%);
+            border-radius: var(--radius);
+            padding: 40px 44px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-banner::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(232, 168, 56, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .welcome-banner::after {
+            content: '';
+            position: absolute;
+            bottom: -40%;
+            left: 20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(42, 82, 152, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .welcome-banner-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-banner h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .welcome-banner p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.65);
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .welcome-banner-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .welcome-banner-actions .btn-primary {
+            padding: 12px 28px;
+            font-size: 15px;
+        }
+
+        .welcome-banner-actions .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .welcome-banner-actions .btn-ghost:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* KPI card progress bar sub-text */
+        .kpi-card-sub {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+
+        .kpi-card--highlight .kpi-card-sub {
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .kpi-card .progress-bar {
+            margin-top: 10px;
+        }
+
+        /* Two-column layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 20px;
+        }
+
+        /* Top Products table compact tweaks */
+        .products-table .data-table tbody td {
+            padding: 10px 16px;
+        }
+
+        .products-table .product-title {
+            font-weight: 600;
+            color: var(--dark);
+            max-width: 260px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .products-table .product-asin {
+            font-size: 11px;
+            color: var(--text-light);
+            font-family: 'Courier New', monospace;
+            margin-top: 2px;
+        }
+
+        .products-table .roas-cell {
+            font-weight: 700;
+        }
+
+        .products-table .roas-cell.roas-high {
+            color: var(--success);
+        }
+
+        /* Competitive summary card */
+        .competitive-summary {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .competitive-summary-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .competitive-summary-item strong {
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .competitive-summary-divider {
+            width: 1px;
+            height: 20px;
+            background: var(--border);
+        }
+
+        /* Dashboard footer */
+        .dash-footer-reset {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.2s;
+            background: none;
+            border: none;
+            font-family: inherit;
+        }
+
+        .dash-footer-reset:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive overrides */
+        @media (max-width: 1024px) {
+            .two-col {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome-banner {
+                padding: 28px 24px;
+            }
+
+            .welcome-banner h1 {
+                font-size: 22px;
+            }
+
+            .welcome-banner-actions {
+                flex-direction: column;
+            }
+
+            .welcome-banner-actions .btn-primary,
+            .welcome-banner-actions .btn-ghost {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .competitive-summary {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+
+            .competitive-summary-divider {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================================================================
+         NAVIGATION
+         ================================================================ -->
+    <nav class="dash-nav">
+        <div class="container">
+            <a href="../index.html" class="dash-nav-logo">
+                <div class="dash-nav-logo-icon">R</div>
+                <div class="dash-nav-logo-text">Royal<span>Deals</span></div>
+            </a>
+
+            <ul class="dash-nav-tabs" id="navTabs">
+                <li><a href="dashboard.html" class="active">Overview</a></li>
+                <li><a href="bidding.html">Bidding &amp; Products</a></li>
+                <li><a href="analytics.html">Analytics</a></li>
+                <li><a href="budget.html">Budget</a></li>
+                <li><a href="revshare.html">RevShare Path</a></li>
+            </ul>
+
+            <div class="dash-nav-right">
+                <div class="dash-nav-balance">
+                    <span class="dash-nav-balance-label">Bal</span>
+                    <span id="navBalance">$287.43</span>
+                </div>
+                <div class="dash-nav-avatar" id="navAvatar">TG</div>
+            </div>
+
+            <button class="dash-nav-hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ================================================================
+         PAGE CONTENT
+         ================================================================ -->
+    <main class="page-content section-gap">
+
+        <!-- Welcome Banner -->
+        <section class="welcome-banner">
+            <div class="welcome-banner-content">
+                <h1 id="welcomeHeading">Welcome back, TechGear Direct</h1>
+                <p id="welcomeSub">Active for 47 days | 8 products listed</p>
+                <div class="welcome-banner-actions">
+                    <a href="bidding.html" class="btn-primary">Manage Bids &#8594;</a>
+                    <a href="analytics.html" class="btn-ghost">View Analytics &#8594;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- KPI Cards -->
+        <section class="kpi-grid" id="kpiGrid">
+            <!-- Account Balance -->
+            <div class="kpi-card kpi-card--highlight">
+                <div class="kpi-card-label">Account Balance</div>
+                <div class="kpi-card-value" id="kpiBalance">$287.43</div>
+                <div class="kpi-card-sub" id="kpiBalanceSub">57% of $500.00 spent</div>
+                <div class="progress-bar" style="margin-top: 10px;">
+                    <div class="progress-fill progress-fill--animated" id="kpiBalanceBar" style="width: 57%;"></div>
+                </div>
+            </div>
+
+            <!-- Today's Spend -->
+            <div class="kpi-card">
+                <div class="kpi-card-label">Today's Spend</div>
+                <div class="kpi-card-value" id="kpiTodaySpend">$14.32</div>
+                <div class="kpi-card-sub" id="kpiTodaySpendSub">/ $25.00 daily cap</div>
+                <span class="kpi-card-trend kpi-card-trend--up" style="margin-top: 6px;">
+                    <span>&#9679;</span> Within budget
+                </span>
+            </div>
+
+            <!-- Total Clicks (30d) -->
+            <div class="kpi-card">
+                <div class="kpi-card-label">Total Clicks (30d)</div>
+                <div class="kpi-card-value" id="kpiClicks">1,668</div>
+                <span class="kpi-card-trend kpi-card-trend--up">
+                    &#9650; +12% vs prev. period
+                </span>
+            </div>
+
+            <!-- ROAS (30d) -->
+            <div class="kpi-card">
+                <div class="kpi-card-label">ROAS (30d)</div>
+                <div class="kpi-card-value" id="kpiRoas">8.2x</div>
+                <span class="badge badge--success" style="margin-top: 6px;">Above target</span>
+            </div>
+        </section>
+
+        <!-- Two-Column: Products + Alerts -->
+        <section class="two-col">
+
+            <!-- Left: Top Products by ROAS -->
+            <div class="card products-table">
+                <div class="card-header">
+                    <h3>Top Products by ROAS</h3>
+                    <a href="bidding.html" class="card-action">View All &#8594;</a>
+                </div>
+                <div class="data-table-wrapper">
+                    <table class="data-table" id="topProductsTable">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Bid</th>
+                                <th>Position</th>
+                                <th>Clicks</th>
+                                <th>ROAS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="topProductsBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Right: Recent Alerts -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Recent Alerts</h3>
+                    <span class="badge badge--accent" id="alertCount">6 alerts</span>
+                </div>
+                <div class="alert-list" id="alertList">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Competitive Summary -->
+        <section class="competitive-summary" id="competitiveSummary">
+            <div class="competitive-summary-item">
+                Bidding across <strong id="csCategories">2 categories</strong>
+            </div>
+            <div class="competitive-summary-divider"></div>
+            <div class="competitive-summary-item">
+                <strong id="csPosition1">3</strong> products in Position #1
+            </div>
+            <div class="competitive-summary-divider"></div>
+            <div class="competitive-summary-item">
+                Average CPC: <strong id="csAvgCpc">$0.30</strong>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================================================================
+         FOOTER
+         ================================================================ -->
+    <footer class="dash-footer">
+        <div class="container">
+            <div class="dash-footer-left">
+                <div class="dash-footer-logo-icon">R</div>
+                <span class="dash-footer-text">Royal <span>Deals</span> Ltd | Seller Dashboard</span>
+            </div>
+            <div class="dash-footer-links">
+                <button class="dash-footer-reset" id="resetDemo">Reset Demo</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================================================================
+         SCRIPTS
+         ================================================================ -->
+    <script src="mock-data.js"></script>
+    <script src="auction-engine.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        // ---------------------------------------------------------
+        // Helpers
+        // ---------------------------------------------------------
+        function fmt(n, decimals) {
+            return Number(n).toLocaleString('en-US', {
+                minimumFractionDigits: decimals || 0,
+                maximumFractionDigits: decimals || 0
+            });
+        }
+
+        function fmtCurrency(n) {
+            return '$' + Number(n).toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        }
+
+        function timeAgo(isoStr) {
+            var now = new Date('2026-02-07T15:00:00Z');
+            var then = new Date(isoStr);
+            var diffMs = now - then;
+            var diffMin = Math.floor(diffMs / 60000);
+            if (diffMin < 60) return diffMin + 'm ago';
+            var diffHrs = Math.floor(diffMin / 60);
+            if (diffHrs < 24) return diffHrs + 'h ago';
+            var diffDays = Math.floor(diffHrs / 24);
+            return diffDays + 'd ago';
+        }
+
+        // ---------------------------------------------------------
+        // Data references
+        // ---------------------------------------------------------
+        var seller = DEMO_SELLER;
+        var products = DEMO_PRODUCTS;
+        var alerts = DEMO_ALERTS;
+
+        // ---------------------------------------------------------
+        // Navigation
+        // ---------------------------------------------------------
+        document.getElementById('navBalance').textContent = fmtCurrency(seller.currentBalance);
+        document.getElementById('navAvatar').textContent = seller.name.split(' ').map(function (w) { return w[0]; }).join('').substring(0, 2).toUpperCase();
+
+        // Hamburger toggle
+        var hamburgerBtn = document.getElementById('hamburgerBtn');
+        var navTabs = document.getElementById('navTabs');
+        hamburgerBtn.addEventListener('click', function () {
+            navTabs.classList.toggle('open');
+        });
+
+        // ---------------------------------------------------------
+        // Welcome Banner
+        // ---------------------------------------------------------
+        var activeDays = seller.revShareQualification.currentDays;
+        var totalProducts = products.length;
+        document.getElementById('welcomeHeading').textContent = 'Welcome back, ' + seller.name;
+        document.getElementById('welcomeSub').textContent =
+            'Active for ' + activeDays + ' days | ' + totalProducts + ' products listed';
+
+        // ---------------------------------------------------------
+        // KPI Cards
+        // ---------------------------------------------------------
+        var spentPct = Math.round((seller.totalSpend / seller.initialFunding) * 100);
+
+        document.getElementById('kpiBalance').textContent = fmtCurrency(seller.currentBalance);
+        document.getElementById('kpiBalanceSub').textContent =
+            spentPct + '% of ' + fmtCurrency(seller.initialFunding) + ' spent';
+        document.getElementById('kpiBalanceBar').style.width = spentPct + '%';
+
+        document.getElementById('kpiTodaySpend').textContent = fmtCurrency(seller.todaySpend);
+        document.getElementById('kpiTodaySpendSub').textContent =
+            '/ ' + fmtCurrency(seller.dailyBudgetCap) + ' daily cap';
+
+        document.getElementById('kpiClicks').textContent = fmt(seller.lifetimeClicks);
+        document.getElementById('kpiRoas').textContent = seller.revShareQualification.currentRoas + 'x';
+
+        // ---------------------------------------------------------
+        // Top Products by ROAS (top 5, sorted desc)
+        // ---------------------------------------------------------
+        var sorted = products.slice().sort(function (a, b) { return b.roas - a.roas; });
+        var top5 = sorted.slice(0, 5);
+        var tbody = document.getElementById('topProductsBody');
+
+        top5.forEach(function (p) {
+            var tr = document.createElement('tr');
+
+            // Product cell
+            var tdProduct = document.createElement('td');
+            var titleDiv = document.createElement('div');
+            titleDiv.className = 'product-title';
+            titleDiv.textContent = p.title;
+            var asinDiv = document.createElement('div');
+            asinDiv.className = 'product-asin';
+            asinDiv.textContent = p.asin;
+            tdProduct.appendChild(titleDiv);
+            tdProduct.appendChild(asinDiv);
+            tr.appendChild(tdProduct);
+
+            // Bid cell
+            var tdBid = document.createElement('td');
+            tdBid.style.fontWeight = '700';
+            tdBid.style.color = 'var(--primary)';
+            tdBid.textContent = fmtCurrency(p.maxCpcBid);
+            tr.appendChild(tdBid);
+
+            // Position cell
+            var tdPos = document.createElement('td');
+            var posSpan = document.createElement('span');
+            posSpan.className = 'badge--position';
+            posSpan.textContent = '#' + p.estimatedPosition;
+            tdPos.appendChild(posSpan);
+            tr.appendChild(tdPos);
+
+            // Clicks cell
+            var tdClicks = document.createElement('td');
+            tdClicks.textContent = fmt(p.clicks);
+            tr.appendChild(tdClicks);
+
+            // ROAS cell
+            var tdRoas = document.createElement('td');
+            tdRoas.className = 'roas-cell' + (p.roas >= 8 ? ' roas-high' : '');
+            tdRoas.textContent = p.roas.toFixed(2) + 'x';
+            tr.appendChild(tdRoas);
+
+            tbody.appendChild(tr);
+        });
+
+        // ---------------------------------------------------------
+        // Recent Alerts
+        // ---------------------------------------------------------
+        var alertList = document.getElementById('alertList');
+        var alertIconMap = {
+            warning: '&#9888;',
+            success: '&#10003;',
+            info: '&#8505;'
+        };
+
+        alerts.forEach(function (a) {
+            var item = document.createElement('div');
+            item.className = 'alert-item alert-item--' + a.type;
+
+            var iconDiv = document.createElement('div');
+            iconDiv.className = 'alert-item-icon';
+            iconDiv.innerHTML = alertIconMap[a.type] || '&#8505;';
+
+            var contentDiv = document.createElement('div');
+            contentDiv.className = 'alert-item-content';
+
+            var msgDiv = document.createElement('div');
+            msgDiv.className = 'alert-item-message';
+            msgDiv.textContent = a.message;
+
+            var timeDiv = document.createElement('div');
+            timeDiv.className = 'alert-item-time';
+            timeDiv.textContent = timeAgo(a.time);
+
+            contentDiv.appendChild(msgDiv);
+            contentDiv.appendChild(timeDiv);
+
+            item.appendChild(iconDiv);
+            item.appendChild(contentDiv);
+
+            alertList.appendChild(item);
+        });
+
+        document.getElementById('alertCount').textContent = alerts.length + ' alerts';
+
+        // ---------------------------------------------------------
+        // Competitive Summary
+        // ---------------------------------------------------------
+        var categories = {};
+        var pos1Count = 0;
+        var totalCpc = 0;
+        var activeCount = 0;
+
+        products.forEach(function (p) {
+            if (p.status === 'active') {
+                categories[p.category] = true;
+                if (p.estimatedPosition === 1) pos1Count++;
+                totalCpc += p.currentEstimatedCpc;
+                activeCount++;
+            }
+        });
+
+        var categoryCount = Object.keys(categories).length;
+        var avgCpc = activeCount > 0 ? totalCpc / activeCount : 0;
+
+        document.getElementById('csCategories').textContent = categoryCount + ' categor' + (categoryCount === 1 ? 'y' : 'ies');
+        document.getElementById('csPosition1').textContent = pos1Count;
+        document.getElementById('csAvgCpc').textContent = fmtCurrency(avgCpc);
+
+        // ---------------------------------------------------------
+        // Reset Demo
+        // ---------------------------------------------------------
+        document.getElementById('resetDemo').addEventListener('click', function () {
+            localStorage.clear();
+            window.location.reload();
+        });
+
+    });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget | RoyalDeals Seller Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared.css">
+    <style>
+        /* ====== Balance Hero ====== */
+        .balance-hero {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 60%, var(--primary-light) 100%);
+            border-radius: var(--radius);
+            padding: 36px 40px;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .balance-hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(232, 168, 56, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .balance-hero-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 4px;
+        }
+
+        .balance-hero-amount {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .balance-hero-progress {
+            margin-bottom: 12px;
+        }
+
+        .balance-hero-progress-track {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .balance-hero-progress-fill {
+            height: 100%;
+            border-radius: 5px;
+            background: linear-gradient(90deg, var(--accent), #f0c060);
+            transition: width 0.6s ease;
+        }
+
+        .balance-hero-progress-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 6px;
+        }
+
+        .balance-hero-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .balance-hero-note {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.65);
+            font-style: italic;
+        }
+
+        /* ====== Two-column panels ====== */
+        .budget-panels {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .budget-panels { grid-template-columns: 1fr; }
+        }
+
+        .budget-panel {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+        }
+
+        .budget-panel h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .budget-field-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .budget-input-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .budget-input-row input {
+            width: 120px;
+            padding: 10px 14px;
+            font-size: 18px;
+            font-weight: 700;
+            font-family: inherit;
+            color: var(--dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            text-align: center;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .budget-input-row input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 60, 110, 0.1);
+        }
+
+        .budget-input-row span {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .today-spend-bar {
+            margin-top: 8px;
+        }
+
+        .today-spend-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 6px;
+        }
+
+        .today-spend-labels strong {
+            color: var(--dark);
+        }
+
+        /* Velocity stats */
+        .velocity-stat {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .velocity-stat:last-child {
+            border-bottom: none;
+        }
+
+        .velocity-stat-label {
+            font-size: 14px;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .velocity-stat-value {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .velocity-stat-value.accent {
+            color: var(--accent);
+        }
+
+        /* ====== Transaction History ====== */
+        .txn-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .txn-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .txn-card-header h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .txn-amount-pos {
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .txn-amount-neg {
+            color: var(--danger);
+            font-weight: 700;
+        }
+
+        .txn-type-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .txn-type-badge.deposit {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .txn-type-badge.charge {
+            background: rgba(239, 68, 68, 0.08);
+            color: var(--danger);
+        }
+
+        /* Pagination controls */
+        .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .pagination button {
+            padding: 6px 14px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: inherit;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--white);
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .pagination button:hover:not(:disabled) {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .pagination button.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .pagination button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .pagination-info {
+            font-size: 13px;
+            color: var(--text-light);
+            padding: 0 8px;
+        }
+
+        /* ====== Top-Up Modal ====== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 25, 35, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px;
+            width: 100%;
+            max-width: 460px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .modal h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .modal p {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 24px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 22px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--dark);
+        }
+
+        .amount-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .amount-option {
+            padding: 14px;
+            text-align: center;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.2s;
+            background: var(--white);
+            font-family: inherit;
+        }
+
+        .amount-option:hover {
+            border-color: var(--primary);
+            background: rgba(26, 60, 110, 0.04);
+        }
+
+        .amount-option.selected {
+            border-color: var(--accent);
+            background: rgba(232, 168, 56, 0.08);
+            color: var(--accent);
+        }
+
+        .custom-amount-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .custom-amount-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            white-space: nowrap;
+        }
+
+        .custom-amount-group input {
+            flex: 1;
+            padding: 12px 16px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: inherit;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            color: var(--dark);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .custom-amount-group input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 60, 110, 0.1);
+        }
+
+        .modal-success {
+            display: none;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .modal-success.show {
+            display: block;
+        }
+
+        .modal-success .check-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 28px;
+            color: var(--success);
+        }
+
+        .modal-success h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 6px;
+        }
+
+        .modal-success p {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 0;
+        }
+
+        /* ====== Alert Settings ====== */
+        .alert-settings-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+        }
+
+        .alert-settings-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .alert-setting-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+            gap: 16px;
+        }
+
+        .alert-setting-row:last-child {
+            border-bottom: none;
+        }
+
+        .alert-setting-info {
+            flex: 1;
+        }
+
+        .alert-setting-info label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .alert-setting-info span {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .alert-setting-control input[type="number"] {
+            width: 100px;
+            padding: 8px 12px;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: inherit;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            text-align: center;
+            color: var(--dark);
+            transition: border-color 0.2s;
+        }
+
+        .alert-setting-control input[type="number"]:focus {
+            border-color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+<!-- ====== NAV ====== -->
+<nav class="dash-nav">
+    <div class="container">
+        <a href="dashboard.html" class="dash-nav-logo">
+            <div class="dash-nav-logo-icon">R</div>
+            <div class="dash-nav-logo-text">Royal<span>Deals</span></div>
+        </a>
+
+        <ul class="dash-nav-tabs" id="navTabs">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="bidding.html">Bidding</a></li>
+            <li><a href="analytics.html">Analytics</a></li>
+            <li><a href="budget.html" class="active">Budget</a></li>
+            <li><a href="revshare.html">RevShare Path</a></li>
+        </ul>
+
+        <div class="dash-nav-right">
+            <div class="dash-nav-balance">
+                <span class="dash-nav-balance-label">Bal</span> <span id="navBalance">$287.43</span>
+            </div>
+            <div class="dash-nav-avatar" title="TechGear Direct">T</div>
+        </div>
+
+        <button class="dash-nav-hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- ====== PAGE CONTENT ====== -->
+<main class="page-content section-gap">
+
+    <!-- Page header -->
+    <div class="page-header">
+        <div class="page-header-text">
+            <h1>Budget &amp; Billing</h1>
+            <p>Manage your account balance, daily budget caps, and transaction history.</p>
+        </div>
+    </div>
+
+    <!-- Balance Hero -->
+    <div class="balance-hero">
+        <div class="balance-hero-label">Account Balance</div>
+        <div class="balance-hero-amount" id="heroBalance">$287.43</div>
+
+        <div class="balance-hero-progress">
+            <div class="balance-hero-progress-track">
+                <div class="balance-hero-progress-fill" id="heroProgressFill" style="width: 57.5%;"></div>
+            </div>
+            <div class="balance-hero-progress-labels">
+                <span>57% spent ($212.57 of $500.00)</span>
+                <span>$500.00 funded</span>
+            </div>
+        </div>
+
+        <div class="balance-hero-meta">
+            <div class="balance-hero-note">At current pace, balance lasts ~18 days</div>
+            <button class="btn-primary" id="topUpBtn" style="padding:12px 28px; font-size:15px;">Top Up</button>
+        </div>
+    </div>
+
+    <!-- Two-column: Daily Budget + Spend Velocity -->
+    <div class="budget-panels">
+        <!-- Daily Budget Cap -->
+        <div class="budget-panel">
+            <h3>Daily Budget Cap</h3>
+            <div class="budget-field-label">Current Cap</div>
+            <div class="budget-input-row">
+                <span style="font-size:18px;font-weight:700;color:var(--dark);">$</span>
+                <input type="number" id="dailyCapInput" value="25.00" min="1" step="0.50">
+                <span>/day</span>
+                <button class="btn-primary btn-sm" id="saveCapBtn">Save</button>
+            </div>
+
+            <div class="today-spend-bar">
+                <div class="today-spend-labels">
+                    <span>Today's spend: <strong>$14.32</strong></span>
+                    <span>$25.00 cap</span>
+                </div>
+                <div class="progress-bar" style="height:10px;">
+                    <div class="progress-fill progress-fill--animated" style="width:57.3%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Spend Velocity -->
+        <div class="budget-panel">
+            <h3>Spend Velocity</h3>
+            <div class="velocity-stat">
+                <div class="velocity-stat-label">Avg daily spend (30d)</div>
+                <div class="velocity-stat-value">$7.09</div>
+            </div>
+            <div class="velocity-stat">
+                <div class="velocity-stat-label">Avg daily spend (7d)</div>
+                <div class="velocity-stat-value">$18.42</div>
+            </div>
+            <div class="velocity-stat">
+                <div class="velocity-stat-label">Est. days remaining</div>
+                <div class="velocity-stat-value accent">18</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transaction History -->
+    <div class="txn-card">
+        <div class="txn-card-header">
+            <h3>Transaction History</h3>
+            <span class="badge badge--neutral" id="txnCount">15 transactions</span>
+        </div>
+        <div class="data-table-wrapper">
+            <table class="data-table" id="txnTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th style="text-align:right;">Amount</th>
+                        <th style="text-align:right;">Balance</th>
+                    </tr>
+                </thead>
+                <tbody id="txnTableBody"></tbody>
+            </table>
+        </div>
+        <div class="pagination" id="txnPagination"></div>
+    </div>
+
+    <!-- Alert Settings -->
+    <div class="alert-settings-card">
+        <h3>Alert Settings</h3>
+        <div class="alert-setting-row">
+            <div class="alert-setting-info">
+                <label>Low Balance Alert</label>
+                <span>Notify when balance falls below this amount</span>
+            </div>
+            <div class="alert-setting-control" style="display:flex;align-items:center;gap:6px;">
+                <span style="font-weight:600;color:var(--dark);">$</span>
+                <input type="number" id="lowBalanceThreshold" value="100" min="10" step="10">
+            </div>
+        </div>
+        <div class="alert-setting-row">
+            <div class="alert-setting-info">
+                <label>Daily Budget Utilisation Alert</label>
+                <span>Notify when 80% of daily budget is spent</span>
+            </div>
+            <div class="alert-setting-control">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="dailyBudgetAlert" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<!-- ====== TOP-UP MODAL ====== -->
+<div class="modal-overlay" id="topUpModal">
+    <div class="modal">
+        <button class="modal-close" id="modalClose">&times;</button>
+
+        <div id="modalForm">
+            <h3>Top Up Your Account</h3>
+            <p>Select an amount or enter a custom value to add to your balance.</p>
+
+            <div class="amount-options">
+                <button class="amount-option" data-amount="100">$100</button>
+                <button class="amount-option" data-amount="250">$250</button>
+                <button class="amount-option selected" data-amount="500">$500</button>
+            </div>
+
+            <div class="custom-amount-group">
+                <label>Custom: $</label>
+                <input type="number" id="customAmount" placeholder="Enter amount" min="10" step="10">
+            </div>
+
+            <button class="btn-primary" id="processPaymentBtn" style="width:100%;">Process Payment</button>
+        </div>
+
+        <div class="modal-success" id="modalSuccess">
+            <div class="check-icon">&#10003;</div>
+            <h4>Payment Successful!</h4>
+            <p id="successMessage">$500.00 has been added to your account balance.</p>
+        </div>
+    </div>
+</div>
+
+<!-- ====== FOOTER ====== -->
+<footer class="dash-footer">
+    <div class="container">
+        <div class="dash-footer-left">
+            <div class="dash-footer-logo-icon">R</div>
+            <div class="dash-footer-text">Royal<span>Deals</span> Seller Dashboard</div>
+        </div>
+        <div class="dash-footer-copyright">&copy; 2026 RoyalDeals. All rights reserved.</div>
+        <div class="dash-footer-links">
+            <a href="#">Help Centre</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+    </div>
+</footer>
+
+<!-- ====== SCRIPTS ====== -->
+<script src="mock-data.js"></script>
+<script src="auction-engine.js"></script>
+<script>
+(function () {
+    'use strict';
+
+    // ---- Hamburger toggle ----
+    const hamburger = document.getElementById('hamburgerBtn');
+    const navTabs = document.getElementById('navTabs');
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            navTabs.classList.toggle('open');
+        });
+    }
+
+    // ---- Transaction Table with Pagination ----
+    const PER_PAGE = 10;
+    let currentPage = 1;
+    // Show newest first
+    const transactions = [...DEMO_TRANSACTIONS].reverse();
+    const totalPages = Math.ceil(transactions.length / PER_PAGE);
+
+    function formatDate(iso) {
+        const d = new Date(iso);
+        return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    }
+
+    function renderTxnTable() {
+        const start = (currentPage - 1) * PER_PAGE;
+        const pageData = transactions.slice(start, start + PER_PAGE);
+        const tbody = document.getElementById('txnTableBody');
+
+        tbody.innerHTML = pageData.map(txn => {
+            const isDeposit = txn.type === 'deposit';
+            const typeLabel = isDeposit ? 'Deposit' : 'CPC Charge';
+            const typeBadge = isDeposit ? 'deposit' : 'charge';
+            const amtClass = isDeposit ? 'txn-amount-pos' : 'txn-amount-neg';
+            const amtPrefix = isDeposit ? '+' : '';
+            return `
+                <tr>
+                    <td style="white-space:nowrap;">${formatDate(txn.date)}</td>
+                    <td><span class="txn-type-badge ${typeBadge}">${typeLabel}</span></td>
+                    <td>${txn.description}</td>
+                    <td style="text-align:right;" class="${amtClass}">${amtPrefix}$${Math.abs(txn.amount).toFixed(2)}</td>
+                    <td style="text-align:right; font-weight:600;">$${txn.balance.toFixed(2)}</td>
+                </tr>
+            `;
+        }).join('');
+
+        renderPagination();
+    }
+
+    function renderPagination() {
+        const container = document.getElementById('txnPagination');
+        let html = '';
+
+        html += `<button ${currentPage <= 1 ? 'disabled' : ''} data-page="${currentPage - 1}">&laquo; Prev</button>`;
+
+        for (let p = 1; p <= totalPages; p++) {
+            html += `<button class="${p === currentPage ? 'active' : ''}" data-page="${p}">${p}</button>`;
+        }
+
+        html += `<button ${currentPage >= totalPages ? 'disabled' : ''} data-page="${currentPage + 1}">Next &raquo;</button>`;
+
+        container.innerHTML = html;
+
+        container.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const page = parseInt(btn.dataset.page, 10);
+                if (page >= 1 && page <= totalPages) {
+                    currentPage = page;
+                    renderTxnTable();
+                }
+            });
+        });
+    }
+
+    renderTxnTable();
+
+    // ---- Daily Budget Cap Save ----
+    document.getElementById('saveCapBtn').addEventListener('click', () => {
+        const val = parseFloat(document.getElementById('dailyCapInput').value);
+        if (isNaN(val) || val < 1) return;
+        // In a real app this would save to the backend.
+        const btn = document.getElementById('saveCapBtn');
+        const original = btn.textContent;
+        btn.textContent = 'Saved!';
+        btn.style.background = 'var(--success)';
+        setTimeout(() => {
+            btn.textContent = original;
+            btn.style.background = '';
+        }, 1500);
+    });
+
+    // ---- Top-Up Modal ----
+    const modal = document.getElementById('topUpModal');
+    const modalForm = document.getElementById('modalForm');
+    const modalSuccess = document.getElementById('modalSuccess');
+    let selectedAmount = 500;
+
+    document.getElementById('topUpBtn').addEventListener('click', () => {
+        modalForm.style.display = '';
+        modalSuccess.classList.remove('show');
+        modal.classList.add('open');
+    });
+
+    document.getElementById('modalClose').addEventListener('click', () => {
+        modal.classList.remove('open');
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('open');
+    });
+
+    // Amount option buttons
+    document.querySelectorAll('.amount-option').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.amount-option').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            selectedAmount = parseInt(btn.dataset.amount, 10);
+            document.getElementById('customAmount').value = '';
+        });
+    });
+
+    document.getElementById('customAmount').addEventListener('input', (e) => {
+        document.querySelectorAll('.amount-option').forEach(b => b.classList.remove('selected'));
+        const val = parseFloat(e.target.value);
+        if (!isNaN(val) && val > 0) {
+            selectedAmount = val;
+        }
+    });
+
+    document.getElementById('processPaymentBtn').addEventListener('click', () => {
+        const customVal = parseFloat(document.getElementById('customAmount').value);
+        const amount = (!isNaN(customVal) && customVal > 0) ? customVal : selectedAmount;
+
+        // Show success
+        modalForm.style.display = 'none';
+        document.getElementById('successMessage').textContent =
+            '$' + amount.toFixed(2) + ' has been added to your account balance.';
+        modalSuccess.classList.add('show');
+
+        // Update balance display (mock)
+        const newBalance = DEMO_SELLER.currentBalance + amount;
+        document.getElementById('heroBalance').textContent = '$' + newBalance.toFixed(2);
+        document.getElementById('navBalance').textContent = '$' + newBalance.toFixed(2);
+
+        setTimeout(() => {
+            modal.classList.remove('open');
+        }, 2500);
+    });
+
+})();
+</script>
+</body>
+</html>
